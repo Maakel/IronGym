@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_gymprogram_a"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.hokku.irongym.gymprogram_a">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TableRow>
+            <TextView
+            android:layout_column="2"
+            android:text="@string/set"
+            android:textSize="16dp"
+            android:padding="3dip" />
+
+            <TextView
+                android:layout_column="3"
+                android:text="@string/vikt"
+                android:textSize="16dp"
+                android:padding="3dip" />
+
+            <TextView
+                android:layout_column="4"
+                android:text="@string/reps"
+                android:textSize="16dp"
+                android:padding="3dip" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/kn_b_j"
+                android:textSize="16dp"
+                android:padding="3dip" />
+
+            <Spinner
+                android:layout_column="2"
+                android:id="@+id/spinner_set1">
+
+            </Spinner>
+            <EditText
+                android:layout_column="3"
+                />
+
+            <EditText
+                android:layout_column="4"
+                />
+
+
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="@string/b_nkpress"
+                android:textSize="16dp"
+                android:padding="3dip" />
+
+            <Spinner
+                android:id="@+id/spinner_set2">
+
+            </Spinner>
+
+            <EditText
+                android:layout_column="3"
+                />
+
+            <EditText
+                android:layout_column="4"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="@string/rodd"
+                android:textSize="16dp"
+                android:padding="3dip" />
+
+            <Spinner
+                android:id="@+id/spinner_set3">
+
+            </Spinner>
+
+            <EditText
+                android:layout_column="3"
+                />
+
+            <EditText
+                android:layout_column="4"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="@string/vadpress"
+                android:textSize="16dp"
+                android:padding="3dip" />
+
+            <Spinner
+                android:id="@+id/spinner_set4">
+
+            </Spinner>
+
+            <EditText
+                android:layout_column="3"
+                />
+
+            <EditText
+                android:layout_column="4"
+                />
+
+        </TableRow>
+
+    </TableLayout>
+
+
+</RelativeLayout>

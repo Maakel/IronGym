@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">IronGym</string>
+    <string name="title_activity_gymprogram_a">gymprogram_a</string>
+    <string name="title_activity_gymprogram_b">gymprogram_b</string>
+    <string name="pass_a">Pass A</string>
+    <string name="pass_b">Pass B</string>
+    <string name="kn_b_j">Knäböj</string>
+    <string name="b_nkpress">Bänkpress</string>
+    <string name="rodd">Rodd</string>
+    <string name="vadpress">Vadpress</string>
+    <string name="set">Set</string>
+    <string name="reps">Reps</string>
+    <string name="vikt">Vikt</string>
+</resources>
