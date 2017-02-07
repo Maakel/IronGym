@@ -4,8 +4,8 @@
     <string name="title_activity_gymprogram_b">gymprogram_b</string>
     <string name="pass_a">Pass A</string>
     <string name="pass_b">Pass B</string>
-    <string name="kn_b_j">Knäböj</string>
-    <string name="b_nkpress">Bänkpress</string>
+    <string name="knaboj">Knäböj</string>
+    <string name="bankpress">Bänkpress</string>
     <string name="rodd">Rodd</string>
     <string name="vadpress">Vadpress</string>
     <string name="set">Set</string>

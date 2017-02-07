@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_gymprogram_a"
     android:layout_width="match_parent"
@@ -10,40 +10,41 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.hokku.irongym.gymprogram_a">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#b9b9b9">
 
-        <TableRow>
             <TextView
-            android:layout_column="2"
-            android:text="@string/set"
-            android:textSize="16dp"
-            android:padding="3dip" />
+                android:layout_column="2"
+                android:text="@string/set"
+                android:textSize="16sp"
+                android:padding="3dip"
+                />
 
             <TextView
                 android:layout_column="3"
                 android:text="@string/vikt"
-                android:textSize="16dp"
-                android:padding="3dip" />
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:padding="3dip"
+                />
 
             <TextView
                 android:layout_column="4"
                 android:text="@string/reps"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:padding="3dip" />
         </TableRow>
 
-        <TableRow>
-
+        <TableRow
+            >
             <TextView
                 android:layout_column="1"
-                android:text="@string/kn_b_j"
-                android:textSize="16dp"
-                android:padding="3dip" />
+                android:text="@string/knaboj"
+                android:textSize="16sp"
+                android:padding="3dip"
+                />
 
             <Spinner
                 android:layout_column="2"
@@ -51,22 +52,29 @@
 
             </Spinner>
             <EditText
+                android:id="@+id/knabojVikt"
                 android:layout_column="3"
+                android:inputType="number"
+                android:maxLength="3"
+                android:layout_width="40dp"
+                android:nextFocusDown="@+id/knabojReps"
                 />
 
             <EditText
+                android:id="@id/knabojReps"
                 android:layout_column="4"
+                android:inputType="number"
+                android:maxLength="2"
+                android:nextFocusDown="@+id/bankpressVikt"
                 />
-
-
         </TableRow>
 
 
         <TableRow>
             <TextView
                 android:layout_column="1"
-                android:text="@string/b_nkpress"
-                android:textSize="16dp"
+                android:text="@string/bankpress"
+                android:textSize="16sp"
                 android:padding="3dip" />
 
             <Spinner
@@ -75,11 +83,19 @@
             </Spinner>
 
             <EditText
+                android:id="@id/bankpressVikt"
                 android:layout_column="3"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@+id/bankpressReps"
                 />
 
             <EditText
+                android:id="@id/bankpressReps"
                 android:layout_column="4"
+                android:inputType="number"
+                android:maxLength="2"
+                android:nextFocusDown="@+id/roddVikt"
                 />
         </TableRow>
 
@@ -87,7 +103,7 @@
             <TextView
                 android:layout_column="1"
                 android:text="@string/rodd"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:padding="3dip" />
 
             <Spinner
@@ -96,11 +112,19 @@
             </Spinner>
 
             <EditText
+                android:id="@id/roddVikt"
                 android:layout_column="3"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@+id/roddReps"
                 />
 
             <EditText
+                android:id="@id/roddReps"
                 android:layout_column="4"
+                android:inputType="number"
+                android:maxLength="2"
+                android:nextFocusDown="@+id/vadpressVikt"
                 />
         </TableRow>
 
@@ -108,7 +132,7 @@
             <TextView
                 android:layout_column="1"
                 android:text="@string/vadpress"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:padding="3dip" />
 
             <Spinner
@@ -117,16 +141,19 @@
             </Spinner>
 
             <EditText
+                android:id="@id/vadpressVikt"
                 android:layout_column="3"
+                android:inputType="number"
+                android:maxLength="3"
+                android:nextFocusDown="@+id/vadpressReps"
                 />
 
             <EditText
+                android:id="@id/vadpressReps"
                 android:layout_column="4"
-                />
+                android:inputType="number"
+                android:maxLength="2" />
 
         </TableRow>
 
-    </TableLayout>
-
-
-</RelativeLayout>
+</TableLayout>
