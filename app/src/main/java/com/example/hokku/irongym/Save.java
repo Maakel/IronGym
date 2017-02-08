@@ -51,6 +51,8 @@ public class Save extends AppCompatActivity {
         String sq4 = exercise_a.getString("squat4","");
         String sq5 = exercise_a.getString("squat5","");
 
+        gymprogram_a.
+
 
 
 
