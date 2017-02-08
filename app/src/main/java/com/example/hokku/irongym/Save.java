@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+
+
 public class Save extends AppCompatActivity {
 
-    int[] squatsArrayWeight = new int[5];
+    static int[] squatsArrayWeight = new int[5];
     int[] benchpressArrayWeight = new int[5];
     int[] rowArrayWeight = new int[5];
     int[] calfraiseArray = new int[5];
@@ -51,7 +53,12 @@ public class Save extends AppCompatActivity {
         String sq4 = exercise_a.getString("squat4","");
         String sq5 = exercise_a.getString("squat5","");
 
-        gymprogram_a.
+        gymprogram_a.iTest= Integer.parseInt(sq1);
+         /*gymprogram_a.      setText(sq2);
+        gymprogram_a.      setText(sq3);
+        gymprogram_a.      setText(sq4);
+        gymprogram_a.      setText(sq5);
+        */
 
 
 

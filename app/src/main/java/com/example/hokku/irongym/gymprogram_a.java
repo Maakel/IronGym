@@ -13,6 +13,9 @@ public class gymprogram_a extends AppCompatActivity {
     String sKnabojSet = "1";
 
 
+    static int iTest;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,7 @@ public class gymprogram_a extends AppCompatActivity {
         }
 
 
+        EditText etRoddReps  = (EditText) findViewById(R.id.roddReps);
 
 
 
@@ -49,13 +53,10 @@ public class gymprogram_a extends AppCompatActivity {
                     sKnabojSet = etKnabojSet.getText().toString();
                     if (sKnabojSet.length() > 0) {
                         etKnabojReps.setHint(sKnabojSet);
-
-
+                      
                         editPref.putString("tag", sKnabojSet).apply();
 
-
                         tv.setText(sharedPref.getString("tag", ""));
-
                     } else {
                         etKnabojReps.setHint(sKnabojRepsHint);
                     }
