@@ -59,10 +59,12 @@
                 android:nextFocusDown="@+id/knabojVikt"/>
 
             <EditText
+
                 android:hint="10"
                 tools:ignore="HardcodedText"
                 android:textAlignment="center"
-                android:id="@id/knabojVikt"
+                android:id="@+id/squatsWeight1"
+
                 android:layout_column="3"
                 android:inputType="number"
                 android:maxLength="3"

@@ -7,7 +7,9 @@ import android.widget.EditText;
 
 public class gymprogram_a extends AppCompatActivity {
 
+
     String sKnabojSet = "1";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +18,7 @@ public class gymprogram_a extends AppCompatActivity {
 
 
         final EditText etKnabojSet  = (EditText) findViewById(R.id.knabojSet);
-        final EditText etKnabojVikt       = (EditText) findViewById(R.id.knabojVikt);
+        final EditText etSquatsWeight1 = (EditText)findViewById(R.id.squatsWeight1);
         final EditText etKnabojReps       = (EditText) findViewById(R.id.knabojReps);
 
         final String sKnabojRepsHint = etKnabojReps.getHint().toString();
@@ -34,10 +36,7 @@ public class gymprogram_a extends AppCompatActivity {
 
                 }
             }
-
         });
 
     }
-
-
 }
