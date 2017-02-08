@@ -11,6 +11,9 @@ public class gymprogram_a extends AppCompatActivity {
     String sKnabojSet = "1";
 
 
+    static int iTest;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +24,9 @@ public class gymprogram_a extends AppCompatActivity {
         final EditText etSquatsWeight1 = (EditText)findViewById(R.id.squatsWeight1);
         final EditText etKnabojReps       = (EditText) findViewById(R.id.knabojReps);
 
+        EditText etRoddReps  = (EditText) findViewById(R.id.roddReps);
+
+
         final String sKnabojRepsHint = etKnabojReps.getHint().toString();
 
         etKnabojSet.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -30,6 +36,7 @@ public class gymprogram_a extends AppCompatActivity {
                     sKnabojSet = etKnabojSet.getText().toString();
                     if (sKnabojSet.length() > 0) {
                         etKnabojReps.setHint(sKnabojSet);
+                        Save.squatsArrayWeight[0]= Integer.parseInt(sKnabojSet);
                     } else {
                         etKnabojReps.setHint(sKnabojRepsHint);
                     }
