@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_gymprogram_a"
     android:layout_width="match_parent"
@@ -10,6 +10,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.hokku.irongym.gymprogram_a">
 
+    <TableLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,8 +40,7 @@
                 android:padding="3dip" />
         </TableRow>
 
-        <TableRow
-            >
+        <TableRow>
             <TextView
                 android:layout_column="1"
                 android:text="@string/knaboj"
@@ -46,13 +48,23 @@
                 android:padding="3dip"
                 />
 
-            <Spinner
-                android:layout_column="2"
-                android:id="@+id/spinner_set1">
-
-            </Spinner>
             <EditText
+                android:hint="1"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
+                android:layout_column="2"
+                android:inputType="number"
+                android:maxLength="2"
+                android:id="@+id/knabojSet"
+                android:nextFocusDown="@+id/knabojVikt"/>
+
+            <EditText
+
+                android:hint="10"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
                 android:id="@+id/squatsWeight1"
+
                 android:layout_column="3"
                 android:inputType="number"
                 android:maxLength="3"
@@ -61,12 +73,14 @@
                 />
 
             <EditText
+                android:hint="10"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
                 android:id="@id/knabojReps"
                 android:layout_column="4"
                 android:inputType="number"
                 android:maxLength="2"
-                android:nextFocusDown="@+id/bankpressVikt"
-                />
+                android:nextFocusDown="@+id/bankpressSet" />
         </TableRow>
 
 
@@ -77,12 +91,20 @@
                 android:textSize="16sp"
                 android:padding="3dip" />
 
-            <Spinner
-                android:id="@+id/spinner_set2">
-
-            </Spinner>
+            <EditText
+                android:hint="1"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
+                android:layout_column="2"
+                android:inputType="number"
+                android:maxLength="2"
+                android:id="@id/bankpressSet"
+                android:nextFocusDown="@+id/bankpressVikt"/>
 
             <EditText
+                android:hint="10"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
                 android:id="@id/bankpressVikt"
                 android:layout_column="3"
                 android:inputType="number"
@@ -91,11 +113,14 @@
                 />
 
             <EditText
+                android:hint="10"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
                 android:id="@id/bankpressReps"
                 android:layout_column="4"
                 android:inputType="number"
                 android:maxLength="2"
-                android:nextFocusDown="@+id/roddVikt"
+                android:nextFocusDown="@+id/roddSet"
                 />
         </TableRow>
 
@@ -106,12 +131,20 @@
                 android:textSize="16sp"
                 android:padding="3dip" />
 
-            <Spinner
-                android:id="@+id/spinner_set3">
-
-            </Spinner>
+            <EditText
+                android:hint="1"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
+                android:layout_column="2"
+                android:inputType="number"
+                android:maxLength="2"
+                android:nextFocusDown="@+id/roddVikt"
+                android:id="@id/roddSet" />
 
             <EditText
+                android:hint="10"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
                 android:id="@id/roddVikt"
                 android:layout_column="3"
                 android:inputType="number"
@@ -120,11 +153,14 @@
                 />
 
             <EditText
+                android:hint="10"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
                 android:id="@id/roddReps"
                 android:layout_column="4"
                 android:inputType="number"
                 android:maxLength="2"
-                android:nextFocusDown="@+id/vadpressVikt"
+                android:nextFocusDown="@+id/vadpressSet"
                 />
         </TableRow>
 
@@ -135,12 +171,20 @@
                 android:textSize="16sp"
                 android:padding="3dip" />
 
-            <Spinner
-                android:id="@+id/spinner_set4">
-
-            </Spinner>
+            <EditText
+                android:hint="1"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
+                android:layout_column="2"
+                android:inputType="number"
+                android:maxLength="2"
+                android:nextFocusDown="@+id/vadpressVikt"
+                android:id="@id/vadpressSet" />
 
             <EditText
+                android:hint="10"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
                 android:id="@id/vadpressVikt"
                 android:layout_column="3"
                 android:inputType="number"
@@ -149,11 +193,15 @@
                 />
 
             <EditText
+                android:hint="10"
+                tools:ignore="HardcodedText"
+                android:textAlignment="center"
                 android:id="@id/vadpressReps"
                 android:layout_column="4"
                 android:inputType="number"
                 android:maxLength="2" />
 
         </TableRow>
+    </TableLayout>
 
-</TableLayout>
+</ScrollView>
