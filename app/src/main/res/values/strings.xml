@@ -11,4 +11,6 @@
     <string name="set">Set</string>
     <string name="reps">Reps</string>
     <string name="vikt">Vikt</string>
+    <string name="visa">Visa</string>
+    <string name="spara">Spara</string>
 </resources>

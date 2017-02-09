@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 public class Save extends AppCompatActivity {
 
-    static int[] squatsArrayWeight = new int[5];
+
+
+    static String[] squatsArrayWeight = new String[5];
     int[] benchpressArrayWeight = new int[5];
     int[] rowArrayWeight = new int[5];
     int[] calfraiseArray = new int[5];
@@ -25,40 +27,41 @@ public class Save extends AppCompatActivity {
     }
 
     // Save value of exercise.
-    public void saveExercise(View view){
+    public static void saveExercise(SharedPreferences exercise_a){
 
 
-        SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
+
 
 
         SharedPreferences.Editor editor = exercise_a.edit();
-        editor.putString("sguats1", String.valueOf(squatsArrayWeight[0]));
-        editor.putString("sguats2", String.valueOf(squatsArrayWeight[1]));
-        editor.putString("sguats3", String.valueOf(squatsArrayWeight[2]));
-        editor.putString("sguats4", String.valueOf(squatsArrayWeight[3]));
-        editor.putString("sguats5", String.valueOf(squatsArrayWeight[4]));
 
-        editor.apply();
 
-        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+       editor.putString("squats1", squatsArrayWeight[0]);
+        editor.putString("squats2", squatsArrayWeight[1]);
+        editor.putString("squats3", squatsArrayWeight[2]);
+        editor.putString("squats4", squatsArrayWeight[3]);
+        editor.putString("squats5", squatsArrayWeight[4]);
+
+        editor.commit();
+
+        //Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
     }
 
-    // Print out saved data in edit text box
+    // Print out saved data in  textview
 
-    public void showOldValue(View view){
-        SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
-        String sq1 = exercise_a.getString("squat1","");
-        String sq2 = exercise_a.getString("squat2","");
-        String sq3 = exercise_a.getString("squat3","");
-        String sq4 = exercise_a.getString("squat4","");
-        String sq5 = exercise_a.getString("squat5","");
+    public static void showOldValue(SharedPreferences exercise_a){
 
-        gymprogram_a.iTest= Integer.parseInt(sq1);
-         /*gymprogram_a.      setText(sq2);
-        gymprogram_a.      setText(sq3);
-        gymprogram_a.      setText(sq4);
-        gymprogram_a.      setText(sq5);
-        */
+
+
+        String sq1 = exercise_a.getString("squats1","");
+        String sq2 = exercise_a.getString("squats2","");
+        String sq3 = exercise_a.getString("squats3","");
+        String sq4 = exercise_a.getString("squats4","");
+        String sq5 = exercise_a.getString("squats5","");
+
+        gymprogram_a.tv.setText(sq1);
+
+
 
 
 

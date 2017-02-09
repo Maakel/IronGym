@@ -1,5 +1,6 @@
 package com.example.hokku.irongym;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +11,9 @@ import android.widget.TextView;
 public class gymprogram_a extends AppCompatActivity {
 
 
-    String sKnabojSet = "1";
+    String sSquatWeight = null;
 
+    static TextView tv;
 
     static int iTest;
 
@@ -22,48 +24,43 @@ public class gymprogram_a extends AppCompatActivity {
         setContentView(R.layout.activity_gymprogram_a);
 
 
-        final EditText etKnabojSet  = (EditText) findViewById(R.id.knabojSet);
-        final EditText etSquatsWeight1 = (EditText)findViewById(R.id.squatsWeight1);
-        final EditText etKnabojReps       = (EditText) findViewById(R.id.knabojReps);
+        final EditText etSquatsSet = (EditText) findViewById(R.id.squatsSet);
+        final EditText etSquatsWeight1 = (EditText) findViewById(R.id.squatsWeight1);
+        final EditText etSquatsReps = (EditText) findViewById(R.id.squatsReps);
 
-        final TextView tv = (TextView) findViewById(R.id.textView);
-
-        final SharedPreferences sharedPref = getSharedPreferences("test", 0);
-        final SharedPreferences.Editor editPref = sharedPref.edit();
-
-        //Hämtar värdet från
-        String test = sharedPref.getString("tag", "");
-
-        if (test.length() > 0) {
-            tv.setText("Sparat värde: " + test);
-        }
+        tv = (TextView) findViewById(R.id.textView);
 
 
-        EditText etRoddReps  = (EditText) findViewById(R.id.roddReps);
+        etSquatsWeight1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
-
-
-        final String sKnabojRepsHint = etKnabojReps.getHint().toString();
-
-
-        etKnabojSet.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (!hasFocus) {
-                    sKnabojSet = etKnabojSet.getText().toString();
-                    if (sKnabojSet.length() > 0) {
-                        etKnabojReps.setHint(sKnabojSet);
-                      
-                        editPref.putString("tag", sKnabojSet).apply();
 
-                        tv.setText(sharedPref.getString("tag", ""));
-                    } else {
-                        etKnabojReps.setHint(sKnabojRepsHint);
+                    sSquatWeight = etSquatsWeight1.getText().toString();
+
+                    if (sSquatWeight.length() > 0) {
+
+                        Save.squatsArrayWeight[0] = sSquatWeight;
+
                     }
 
                 }
             }
         });
+
+    }
+
+    public void saveExercise(View view) {
+        SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
+        Save.saveExercise(exercise_a);
+
+    }
+
+
+    public void showOldValue(View view) {
+        SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
+        Save.showOldValue(exercise_a);
 
     }
 }
