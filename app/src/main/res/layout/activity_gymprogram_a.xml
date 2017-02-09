@@ -59,8 +59,8 @@
                 android:layout_column="2"
                 android:inputType="number"
                 android:maxLength="2"
-                android:id="@+id/knabojSet"
-                android:nextFocusDown="@+id/knabojVikt"/>
+                android:id="@+id/squatsSet"
+                android:nextFocusDown="@+id/squatsWeight1"/>
 
             <EditText
 
@@ -73,18 +73,18 @@
                 android:inputType="number"
                 android:maxLength="3"
                 android:layout_width="40dp"
-                android:nextFocusDown="@+id/knabojReps"
+                android:nextFocusDown="@+id/squatsReps"
                 />
 
             <EditText
                 android:hint="10"
                 tools:ignore="HardcodedText"
                 android:textAlignment="center"
-                android:id="@id/knabojReps"
+                android:id="@id/squatReps"
                 android:layout_column="4"
                 android:inputType="number"
                 android:maxLength="2"
-                android:nextFocusDown="@+id/bankpressSet" />
+                android:nextFocusDown="@+id/benchpressSet" />
         </TableRow>
 
 
@@ -102,29 +102,29 @@
                 android:layout_column="2"
                 android:inputType="number"
                 android:maxLength="2"
-                android:id="@id/bankpressSet"
-                android:nextFocusDown="@+id/bankpressVikt"/>
+                android:id="@id/benchpressSet"
+                android:nextFocusDown="@+id/benchpressWeight"/>
 
             <EditText
                 android:hint="10"
                 tools:ignore="HardcodedText"
                 android:textAlignment="center"
-                android:id="@id/bankpressVikt"
+                android:id="@id/benchpressWeight"
                 android:layout_column="3"
                 android:inputType="number"
                 android:maxLength="3"
-                android:nextFocusDown="@+id/bankpressReps"
+                android:nextFocusDown="@+id/benchpressReps"
                 />
 
             <EditText
                 android:hint="10"
                 tools:ignore="HardcodedText"
                 android:textAlignment="center"
-                android:id="@id/bankpressReps"
+                android:id="@id/benchpressReps"
                 android:layout_column="4"
                 android:inputType="number"
                 android:maxLength="2"
-                android:nextFocusDown="@+id/roddSet"
+                android:nextFocusDown="@+id/rowSet"
                 />
         </TableRow>
 
@@ -142,18 +142,18 @@
                 android:layout_column="2"
                 android:inputType="number"
                 android:maxLength="2"
-                android:nextFocusDown="@+id/roddVikt"
-                android:id="@id/roddSet" />
+                android:nextFocusDown="@+id/rowWeight"
+                android:id="@id/rowSet" />
 
             <EditText
                 android:hint="10"
                 tools:ignore="HardcodedText"
                 android:textAlignment="center"
-                android:id="@id/roddVikt"
+                android:id="@id/rowWeight"
                 android:layout_column="3"
                 android:inputType="number"
                 android:maxLength="3"
-                android:nextFocusDown="@+id/roddReps"
+                android:nextFocusDown="@+id/rowReps"
                 />
 
             <EditText
@@ -164,7 +164,7 @@
                 android:layout_column="4"
                 android:inputType="number"
                 android:maxLength="2"
-                android:nextFocusDown="@+id/vadpressSet"
+                android:nextFocusDown="@+id/calfraiseSet"
                 />
         </TableRow>
 
@@ -182,31 +182,32 @@
                 android:layout_column="2"
                 android:inputType="number"
                 android:maxLength="2"
-                android:nextFocusDown="@+id/vadpressVikt"
-                android:id="@id/vadpressSet" />
+                android:nextFocusDown="@+id/calfraiseWeight"
+                android:id="@id/calfraiseSet" />
 
             <EditText
                 android:hint="10"
                 tools:ignore="HardcodedText"
                 android:textAlignment="center"
-                android:id="@id/vadpressVikt"
+                android:id="@id/calfraiseWeight"
                 android:layout_column="3"
                 android:inputType="number"
                 android:maxLength="3"
-                android:nextFocusDown="@+id/vadpressReps"
+                android:nextFocusDown="@+id/calfraiseReps"
                 />
 
             <EditText
                 android:hint="10"
                 tools:ignore="HardcodedText"
                 android:textAlignment="center"
-                android:id="@id/vadpressReps"
+                android:id="@id/calfraiseReps"
                 android:layout_column="4"
                 android:inputType="number"
                 android:maxLength="2" />
 
         </TableRow>
     </TableLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -215,5 +216,7 @@
         android:layout_below="@id/tl1"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"/>
+
+
     </RelativeLayout>
 </ScrollView>
