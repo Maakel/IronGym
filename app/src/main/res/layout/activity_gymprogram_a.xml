@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <TableLayout
-            android:id="@+id/tl1"
+            android:id="@+id/table1"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
             <TableRow
@@ -26,7 +26,6 @@
                     android:layout_column="1"
                     android:text="@string/set"
                     android:textSize="16sp"
-                    android:padding="3dip"
                     />
 
                 <TextView
@@ -34,14 +33,12 @@
                     android:text="@string/vikt"
                     android:textAlignment="center"
                     android:textSize="16sp"
-                    android:padding="3dip"
                     />
 
                 <TextView
                     android:layout_column="3"
                     android:text="@string/reps"
-                    android:textSize="16sp"
-                    android:padding="3dip" />
+                    android:textSize="16sp" />
             </TableRow>
 
             <TableRow>
@@ -50,7 +47,6 @@
                     android:layout_column="0"
                     android:text="@string/knaboj"
                     android:textSize="16sp"
-                    android:padding="3dip"
                     />
 
                 <EditText
@@ -93,8 +89,7 @@
                 <TextView
                     android:layout_column="0"
                     android:text="@string/bankpress"
-                    android:textSize="16sp"
-                    android:padding="3dip" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:hint="1"
@@ -133,8 +128,7 @@
                 <TextView
                     android:layout_column="0"
                     android:text="@string/rodd"
-                    android:textSize="16sp"
-                    android:padding="3dip" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:hint="1"
@@ -173,8 +167,7 @@
                 <TextView
                     android:layout_column="0"
                     android:text="@string/vadpress"
-                    android:textSize="16sp"
-                    android:padding="3dip" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:hint="1"
@@ -208,26 +201,14 @@
             </TableRow>
         </TableLayout>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/tl1"
-            android:layout_marginTop="50dp"
-            android:layout_centerHorizontal="true"/>
-
-
         <Button
-            android:text="@string/visa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonShow"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:onClick="showOldValue" />
+            android:id="@+id/addExercise"
+            android:onClick="addExercise"
+            android:text="+"
+            tools:ignore="HardcodedText"
+            android:layout_below="@id/table1"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content" />
 
         <Button
             android:text="@string/spara"
@@ -239,6 +220,23 @@
             android:layout_alignParentStart="true"
             android:onClick="saveExercise"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:text="@string/visa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonShow"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="showOldValue"
+            android:layout_below="@id/addExercise" />
 
     </RelativeLayout>
 </ScrollView>
