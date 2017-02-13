@@ -28,43 +28,55 @@
                     android:layout_column="1"
                     android:text="@string/vikt"
                     android:textAlignment="center"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:padding="3dp" />
 
                 <TextView
                     android:layout_column="2"
                     android:text="@string/reps"
                     android:textAlignment="center"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:padding="3dp" />
+
                 <TextView
                     android:layout_column="3"
                     android:text="@string/vikt"
                     android:textAlignment="center"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:padding="3dp" />
+
+
+
                 <TextView
                     android:layout_column="4"
                     android:text="@string/reps"
                     android:textAlignment="center"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:padding="3dp" />
                 <TextView
                     android:layout_column="5"
                     android:text="@string/vikt"
                     android:textAlignment="center"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:padding="3dp" />
                 <TextView
                     android:layout_column="6"
                     android:text="@string/reps"
                     android:textAlignment="center"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:padding="3dp" />
                 <TextView
                     android:layout_column="7"
                     android:text="@string/vikt"
                     android:textAlignment="center"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:padding="3dp" />
                 <TextView
                     android:layout_column="8"
                     android:text="@string/reps"
                     android:textAlignment="center"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:padding="3dp" />
             </TableRow>
 
             <TableRow>
@@ -81,6 +93,7 @@
                     android:textAlignment="center"
                     android:layout_column="1"
                     android:inputType="number"
+                    android:layout_width="40dp"
                     android:maxLength="3"
                     android:id="@+id/squatsWeight1"
                     android:nextFocusDown="@+id/squatsReps1"/>
@@ -95,7 +108,7 @@
                     android:layout_column="2"
                     android:inputType="number"
                     android:maxLength="3"
-                    android:layout_width="40dp"
+
                     android:nextFocusDown="@+id/squatsWeight2"
 
                     />
@@ -107,6 +120,7 @@
                     android:layout_column="3"
                     android:inputType="number"
                     android:maxLength="3"
+                    android:layout_width="40dp"
                     android:id="@+id/squatsWeight2"
                     android:nextFocusDown="@+id/squatsReps2"/>
 
@@ -127,6 +141,7 @@
                     android:layout_column="5"
                     android:inputType="number"
                     android:maxLength="3"
+                    android:layout_width="40dp"
                     android:id="@+id/squatsWeight3"
                     android:nextFocusDown="@+id/squatsReps3"/>
 
@@ -147,6 +162,7 @@
                     android:layout_column="7"
                     android:inputType="number"
                     android:maxLength="3"
+                    android:layout_width="40dp"
                     android:id="@+id/squatsWeight4"
                     android:nextFocusDown="@+id/squatsReps4"/>
 
