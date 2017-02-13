@@ -2,8 +2,8 @@ package com.example.hokku.irongym;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.util.TypedValue;
 import android.view.View;
@@ -27,9 +27,9 @@ public class gymprogram_a extends AppCompatActivity {
         setContentView(R.layout.activity_gymprogram_a);
 
 
-        final EditText etSquatsSet = (EditText) findViewById(R.id.squatsSet);
+
         final EditText etSquatsWeight1 = (EditText) findViewById(R.id.squatsWeight1);
-        final EditText etSquatsReps = (EditText) findViewById(R.id.squatsReps);
+        //final EditText etSquatsReps = (EditText) findViewById(R.id.squatsReps);
 
 
         etSquatsWeight1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
