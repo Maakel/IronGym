@@ -4,8 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 public class gymprogram_a extends AppCompatActivity {
@@ -13,9 +17,8 @@ public class gymprogram_a extends AppCompatActivity {
 
     String sSquatWeight = null;
 
-    static TextView tv;
-
     static int iTest;
+    int noOfRows = 1;
 
 
     @Override
@@ -27,8 +30,6 @@ public class gymprogram_a extends AppCompatActivity {
         final EditText etSquatsSet = (EditText) findViewById(R.id.squatsSet);
         final EditText etSquatsWeight1 = (EditText) findViewById(R.id.squatsWeight1);
         final EditText etSquatsReps = (EditText) findViewById(R.id.squatsReps);
-
-        tv = (TextView) findViewById(R.id.textView);
 
 
         etSquatsWeight1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -54,13 +55,66 @@ public class gymprogram_a extends AppCompatActivity {
     public void saveExercise(View view) {
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
         Save.saveExercise(exercise_a);
-
     }
 
 
     public void showOldValue(View view) {
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
         Save.showOldValue(exercise_a);
+    }
 
+    public void addExercise (View view) {
+        int inputLength = 1;
+
+        TableLayout table = (TableLayout) findViewById(R.id.table1);
+        TableRow row = new TableRow(this);
+        row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        TextView tvInfo = new TextView(this);
+        tvInfo.setText("Test");
+        tvInfo.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+
+        EditText input1 = new EditText(this);
+        input1.setHint("1");
+        input1.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+        input1.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        input1.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+        //input1.setId();
+
+        EditText input2 = new EditText(this);
+        input2.setHint("10");
+        input2.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+        input2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        input2.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+        //input2.setId();
+
+        EditText input3 = new EditText(this);
+        input3.setHint("10");
+        input3.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+        input3.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        input3.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+        //input3.setId();
+
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(inputLength);
+        input1.setFilters(FilterArray);
+        //input1.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(inputLength)});
+
+        row.addView(tvInfo);
+        row.addView(input1);
+        row.addView(input2);
+        row.addView(input3);
+        table.addView(row);
+
+        //table.removeView(row);
+
+        String out = noOfRows + "";
+        printToTextView(out);
+        noOfRows++;
+    }
+
+    void printToTextView(String output) {
+        TextView tv = (TextView) findViewById(R.id.textView);
+        tv.setText(output);
     }
 }
