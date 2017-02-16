@@ -92,7 +92,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="1"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:layout_width="40dp"
                     android:maxLength="3"
                     android:id="@+id/squatsWeight1"
@@ -118,7 +118,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="3"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:layout_width="40dp"
                     android:id="@+id/squatsWeight2"
@@ -139,7 +139,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="5"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:layout_width="40dp"
                     android:id="@+id/squatsWeight3"
@@ -160,7 +160,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="7"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:layout_width="40dp"
                     android:id="@+id/squatsWeight4"
@@ -189,7 +189,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="1"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:id="@+id/benchpressWeight1"
                     android:nextFocusDown="@+id/benchpressReps1"/>
@@ -210,7 +210,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="3"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:id="@+id/benchpressWeight2"
                     android:nextFocusDown="@+id/benchpressReps2"/>
@@ -231,7 +231,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="5"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:id="@+id/benchpressWeight3"
                     android:nextFocusDown="@+id/benchpressReps3"/>
@@ -252,7 +252,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="7"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:id="@+id/benchpressWeight4"
                     android:nextFocusDown="@+id/benchpressReps4"/>
@@ -282,7 +282,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="1"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:nextFocusDown="@+id/rowReps1"
                     android:id="@+id/rowWeight1" />
@@ -303,7 +303,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="3"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:nextFocusDown="@+id/rowReps2"
                     android:id="@+id/rowWeight2" />
@@ -324,7 +324,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="5"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:nextFocusDown="@+id/rowReps3"
                     android:id="@+id/rowWeight3" />
@@ -346,7 +346,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="7"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:nextFocusDown="@+id/rowReps4"
                     android:id="@+id/rowWeight4" />
@@ -377,7 +377,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="1"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:nextFocusDown="@+id/calfraiseReps1"
                     android:id="@+id/calfraiseWeight1" />
@@ -398,7 +398,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="3"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:nextFocusDown="@+id/calfraiseReps2"
                     android:id="@+id/calfraiseWeight2" />
@@ -419,7 +419,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="5"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:nextFocusDown="@+id/calfraiseReps3"
                     android:id="@+id/calfraiseWeight3" />
@@ -440,7 +440,7 @@
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:layout_column="7"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="3"
                     android:nextFocusDown="@+id/calfraiseReps4"
                     android:id="@+id/calfraiseWeight4" />
