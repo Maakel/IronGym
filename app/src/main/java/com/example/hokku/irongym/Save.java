@@ -15,7 +15,7 @@ public class Save extends AppCompatActivity {
     static String[] squatsArrayWeight = new String[5];
     int[] benchpressArrayWeight = new int[5];
     int[] rowArrayWeight = new int[5];
-    int[] calfraiseArray = new int[5];
+    static String[] calfraiseArrayWeight = new String[4];
 
 
 
@@ -41,9 +41,13 @@ public class Save extends AppCompatActivity {
         editor.putString("squats4", squatsArrayWeight[3]);
         editor.putString("squats5", squatsArrayWeight[4]);
 
+        //CalfRaiseWeight
+
+        editor.putString("CalfRaiseWeight1", calfraiseArrayWeight[0]);
+
         editor.commit();
 
-        //Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+
     }
 
     // Print out saved data in  textview
@@ -55,6 +59,10 @@ public class Save extends AppCompatActivity {
         String sq3 = exercise_a.getString("squats3","");
         String sq4 = exercise_a.getString("squats4","");
         String sq5 = exercise_a.getString("squats5","");
+
+        String crw1 = exercise_a.getString("CalfRaiseWeight1", "");
+
+        gymprogram_a.tvTest.setText(crw1);
 
         //gymprogram_a.tv.setText(sq1);
 

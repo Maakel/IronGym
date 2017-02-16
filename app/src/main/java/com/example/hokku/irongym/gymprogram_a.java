@@ -11,11 +11,17 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class gymprogram_a extends AppCompatActivity {
 
 
     String sSquatWeight = null;
+
+    String sCalfRaiseWeight1 = null;
+
+    public static TextView tvTest;
+
 
     static int iTest;
     int noOfRows = 1;
@@ -25,6 +31,10 @@ public class gymprogram_a extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gymprogram_a);
+
+        tvTest = (TextView)findViewById(R.id.textView);
+
+
 
 
 
@@ -50,17 +60,43 @@ public class gymprogram_a extends AppCompatActivity {
             }
         });
 
+        final EditText etcalfRaiseWeight1 = (EditText) findViewById(R.id.calfraiseWeight1) ;
+
+
+        etcalfRaiseWeight1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (!hasFocus) {
+
+                    sCalfRaiseWeight1 = etcalfRaiseWeight1.getText().toString();
+
+                    if (sCalfRaiseWeight1.length() > 0) {
+
+                        Save.calfraiseArrayWeight [0] = sCalfRaiseWeight1;
+
+                    }
+
+                }
+            }
+        });
+
     }
 
     public void saveExercise(View view) {
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
         Save.saveExercise(exercise_a);
+
+        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
     }
 
 
     public void showOldValue(View view) {
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
         Save.showOldValue(exercise_a);
+
+
+
     }
 
     public void addExercise (View view) {
