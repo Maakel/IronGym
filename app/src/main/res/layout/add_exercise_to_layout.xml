@@ -20,7 +20,7 @@
             android:inputType="number"
             android:maxLength="2"
             android:nextFocusDown="@+id/calfraiseWeight"
-            android:id="@id/calfraiseSet" />
+            android:id="@+id/calfraiseSet" />
 
         <EditText
             android:hint="10"
