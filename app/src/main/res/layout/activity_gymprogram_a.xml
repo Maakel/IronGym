@@ -367,10 +367,12 @@
             </TableRow>
 
             <TableRow>
-                <TextView
+                <EditText
                     android:layout_column="0"
-                    android:text="@string/vadpress"
-                    android:textSize="16sp" />
+                    android:hint="@string/vadpress"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="-4dp"
+                    android:inputType="textCapSentences"/>
 
                 <EditText
                     android:hint="1"
@@ -469,6 +471,17 @@
             android:layout_below="@id/table1"
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/noOfSett"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Sett:"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:layout_toEndOf="@id/addExercise"
+            android:layout_alignBottom="@id/addExercise"/>
 
         <Button
             android:text="@string/spara"
