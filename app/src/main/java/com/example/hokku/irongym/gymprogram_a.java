@@ -99,6 +99,7 @@ public class gymprogram_a extends AppCompatActivity {
 
     }
 
+    //Körs när man trycker på +. Lägger till en ny rad i tabellen.
     public void addExercise (View view) {
         int inputLength = 1;
 
@@ -106,9 +107,10 @@ public class gymprogram_a extends AppCompatActivity {
         TableRow row = new TableRow(this);
         row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
-        TextView tvInfo = new TextView(this);
-        tvInfo.setText("Test");
-        tvInfo.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+        EditText etHeaderExercise = new EditText(this);
+        etHeaderExercise.setHint(R.string.exerciseHeader);
+        etHeaderExercise.setInputType(android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        etHeaderExercise.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
 
         EditText input1 = new EditText(this);
         input1.setHint("1");
@@ -136,7 +138,7 @@ public class gymprogram_a extends AppCompatActivity {
         input1.setFilters(FilterArray);
         //input1.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(inputLength)});
 
-        row.addView(tvInfo);
+        row.addView(etHeaderExercise);
         row.addView(input1);
         row.addView(input2);
         row.addView(input3);
