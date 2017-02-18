@@ -23,8 +23,10 @@ public class gymprogram_a extends AppCompatActivity {
     public static TextView tvTest;
 
 
-    static int iTest;
-    int noOfRows = 1;
+    //Sätt till antalet övningar som är definerade i activity_gymprogram_a.xml
+    int noOfRows = 4;
+    //Sätt till antalet celler (vikt+reps) som är definerade i activity_gymprogram_a.xml
+    int noOfCells = 6;
 
 
     @Override
@@ -99,33 +101,50 @@ public class gymprogram_a extends AppCompatActivity {
 
     }
 
-    //Körs när man trycker på +. Lägger till en ny rad i tabellen.
+//Körs när man trycker på +. Lägger till en ny rad i tabellen.
     public void addExercise (View view) {
-        int inputLength = 1;
+//        int inputLength = 1;
+        String out = "Antal rader: " + ++noOfRows;
 
+    //Sätter tabelldata
         TableLayout table = (TableLayout) findViewById(R.id.table1);
         TableRow row = new TableRow(this);
         row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
+        int cell = 0;
+        String cellId = noOfRows + cell + "";
+
+    //Första cellen - Träningsmomentets namn
         EditText etHeaderExercise = new EditText(this);
         etHeaderExercise.setHint(R.string.exerciseHeader);
         etHeaderExercise.setInputType(android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         etHeaderExercise.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+        etHeaderExercise.setId(Integer.parseInt(cellId));
+        row.addView(etHeaderExercise);
 
-        EditText input1 = new EditText(this);
-        input1.setHint("1");
-        input1.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-        input1.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        input1.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
-        //input1.setId();
+        for (cell=1; cell<=noOfCells; cell++) {
+            cellId = noOfRows + cell + "";
+            EditText newWeight = new EditText(this);
+            newWeight.setHint("1");
+            newWeight.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+            newWeight.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            newWeight.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+            newWeight.setId(Integer.parseInt(cellId));
+            row.addView(newWeight);
+            cellId = noOfRows + ++cell + "";
 
-        EditText input2 = new EditText(this);
-        input2.setHint("10");
-        input2.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-        input2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        input2.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
-        //input2.setId();
+            EditText newReps = new EditText(this);
+            newReps.setHint("10");
+            newReps.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+            newReps.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            newReps.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+            newReps.setId(Integer.parseInt(cellId));
+            row.addView(newReps);
+        }
 
+
+
+/*
         EditText input3 = new EditText(this);
         input3.setHint("10");
         input3.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
@@ -133,24 +152,24 @@ public class gymprogram_a extends AppCompatActivity {
         input3.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
         //input3.setId();
 
+
         InputFilter[] FilterArray = new InputFilter[1];
         FilterArray[0] = new InputFilter.LengthFilter(inputLength);
         input1.setFilters(FilterArray);
         //input1.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(inputLength)});
+        */
 
-        row.addView(etHeaderExercise);
-        row.addView(input1);
-        row.addView(input2);
-        row.addView(input3);
+
+        //row.addView(input3);
         table.addView(row);
 
         //table.removeView(row);
 
-        String out = noOfRows + "";
+
         printToTextView(out);
-        noOfRows++;
     }
 
+    //Visar en String i TextView mellan knapparna "Spara" och "Visa"
     void printToTextView(String output) {
         TextView tv = (TextView) findViewById(R.id.textView);
         tv.setText(output);
