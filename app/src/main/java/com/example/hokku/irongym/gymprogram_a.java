@@ -111,6 +111,7 @@ public class gymprogram_a extends AppCompatActivity {
             iNoOfCells = 4;
         } else if (Integer.parseInt(etSett.getText().toString()) > 4) {
             //Nödlösning tills sCellId är fixad (Se problem nedan).
+            //Kollar orienteringen på telefonen och sätter olika max antal celler beroende på riktning.
             if (getResources().getConfiguration().orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE) {
                 iNoOfCells = 8;
             } else {
@@ -119,7 +120,7 @@ public class gymprogram_a extends AppCompatActivity {
         } else {
             iNoOfCells = Integer.parseInt(etSett.getText().toString()) * 2;
         }
-//TODO: Problem när iNoOfCells är större än 10 för då mixas rad och cellvärden i sCellId = svårt att läsa ut!
+//TODO: Problem när iNoOfCells är större än 10 för då mixas rad och cellvärden i sCellId = svårt att läsa ut! Ändra till double?
 
 
         if (iNoOfCells > 0) {
