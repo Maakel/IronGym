@@ -4,15 +4,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewDebug;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import java.util.Calendar;
 
 public class gymprogram_a extends AppCompatActivity {
 
@@ -22,6 +24,14 @@ public class gymprogram_a extends AppCompatActivity {
     String sCalfRaiseWeight1 = null;
 
     public static TextView tvTest;
+
+    static int year;
+    static int month;
+    static int day;
+    static int hour;
+    static int minute;
+
+    static String sDateTime;
 
 
     //Sätt till antalet övningar som är definerade i activity_gymprogram_a.xml
@@ -36,8 +46,6 @@ public class gymprogram_a extends AppCompatActivity {
         setContentView(R.layout.activity_gymprogram_a);
 
         tvTest = (TextView)findViewById(R.id.textView);
-
-
 
 
         final EditText etSquatsWeight1 = (EditText) findViewById(R.id.squatsWeight1);
@@ -88,6 +96,17 @@ public class gymprogram_a extends AppCompatActivity {
     public void saveExercise(View view) {
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
         Save.saveExercise(exercise_a);
+
+        Calendar cal = Calendar.getInstance();
+        year = cal.get(Calendar.YEAR);
+        month = cal.get(Calendar.MONTH);
+        day = cal.get(Calendar.DAY_OF_MONTH);
+        hour = cal.get(Calendar.HOUR);
+        minute = cal.get(Calendar.MINUTE);
+
+        sDateTime = Integer.toString(year) +""+ Integer.toString(month) +""+ Integer.toString(day);
+
+
 
         Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
     }
@@ -194,7 +213,6 @@ public class gymprogram_a extends AppCompatActivity {
     void printToTextView(String output) {
         TextView tv = (TextView) findViewById(R.id.textView);
         tv.setText(output);
-
     }
 }
 

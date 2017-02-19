@@ -2,12 +2,18 @@ package com.example.hokku.irongym;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.icu.text.SimpleDateFormat;
+
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Calendar;
 
+import java.util.Locale;
 
 
 public class Save extends AppCompatActivity {
@@ -19,11 +25,24 @@ public class Save extends AppCompatActivity {
 
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save);
+
+
+
+
     }
+
+   /* public static void date(){
+        Calendar cal = Calendar.getInstance();
+         year = cal.get(Calendar.YEAR);
+    }*/
+
 
     // Save value of exercise.
     public static void saveExercise(SharedPreferences exercise_a){
@@ -62,7 +81,7 @@ public class Save extends AppCompatActivity {
 
         String crw1 = exercise_a.getString("CalfRaiseWeight1", "");
 
-        gymprogram_a.tvTest.setText(crw1);
+        gymprogram_a.tvTest.setText(crw1 + gymprogram_a.sDateTime);
 
         //gymprogram_a.tv.setText(sq1);
 
