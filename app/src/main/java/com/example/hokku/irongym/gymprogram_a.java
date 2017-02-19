@@ -38,7 +38,6 @@ public class gymprogram_a extends AppCompatActivity {
 
 
 
-
         final EditText etSquatsWeight1 = (EditText) findViewById(R.id.squatsWeight1);
         //final EditText etSquatsReps = (EditText) findViewById(R.id.squatsReps);
 
