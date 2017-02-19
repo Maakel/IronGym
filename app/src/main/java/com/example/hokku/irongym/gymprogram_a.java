@@ -12,6 +12,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 public class gymprogram_a extends AppCompatActivity {
 
 
@@ -104,8 +106,16 @@ public class gymprogram_a extends AppCompatActivity {
 //Körs när man trycker på +. Lägger till en ny rad i tabellen.
     public void addExercise (View view) {
         EditText etSett = (EditText) findViewById(R.id.noOfSett);
+        //Hämtar Sett värdet för antal celler som skall byggas.
         if (etSett.getText().toString().equals("")) {
             iNoOfCells = 4;
+        } else if (Integer.parseInt(etSett.getText().toString()) > 4) {
+            //Nödlösning tills sCellId är fixad (Se problem nedan).
+            if (getResources().getConfiguration().orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE) {
+                iNoOfCells = 8;
+            } else {
+                iNoOfCells = 6;
+            }
         } else {
             iNoOfCells = Integer.parseInt(etSett.getText().toString()) * 2;
         }
@@ -131,17 +141,19 @@ public class gymprogram_a extends AppCompatActivity {
             etHeaderExercise.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
             etHeaderExercise.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             etHeaderExercise.setId(Integer.parseInt(sCellId));
+            etHeaderExercise.setNextFocusDownId((Integer.parseInt(sCellId) + 1));
             row.addView(etHeaderExercise);
 
             //Skapar så många Vikt och Reps fält som är definerat i iNoOfCells.
             for (cell = 1; cell <= iNoOfCells; cell++) {
                 sCellId = iNoOfRows + "" + cell;
                 EditText newWeight = new EditText(this);
-                newWeight.setHint("1");
+                newWeight.setHint("20");
                 //newWeight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
                 newWeight.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 newWeight.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 newWeight.setId(Integer.parseInt(sCellId));
+                newWeight.setNextFocusDownId((Integer.parseInt(sCellId) + 1));
                 row.addView(newWeight);
 
                 sCellId = iNoOfRows + "" + ++cell;
@@ -151,6 +163,12 @@ public class gymprogram_a extends AppCompatActivity {
                 newReps.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 newReps.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
                 newReps.setId(Integer.parseInt(sCellId));
+                if (cell < iNoOfCells) {
+                    newReps.setNextFocusDownId((Integer.parseInt(sCellId) + 1));
+                } else {
+                    //NextFocus vid radbrytning.
+                    newReps.setNextFocusDownId(((Integer.parseInt(sCellId) + 9)/10)*10);
+                }
                 row.addView(newReps);
                 sOut = sCellId + "";
             }
@@ -165,12 +183,8 @@ public class gymprogram_a extends AppCompatActivity {
         */
 
 
-            //row.addView(input3);
+            //Infogar ny rad
             table.addView(row);
-
-            //table.removeView(row);
-
-
             printToTextView(sOut);
         }
     }
@@ -182,3 +196,5 @@ public class gymprogram_a extends AppCompatActivity {
 
     }
 }
+
+//TODO: Spara när man vrider skärmen.
