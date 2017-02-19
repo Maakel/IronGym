@@ -33,9 +33,11 @@ public class gymprogram_a extends AppCompatActivity {
 
 
     //Sätt till antalet övningar som är definerade i activity_gymprogram_a.xml
-    int iNoOfRows = 4;
+    int iNoOfRows = 3;
     //Antalet celler (vikt+reps) som är definerade i activity_gymprogram_a.xml
     int iNoOfCells; //= 6;
+
+    static String[][] sTabellArr = new String[10][15];
 
 //--------------------------------------------------------------------------------------------------
 
@@ -82,6 +84,39 @@ public class gymprogram_a extends AppCompatActivity {
 //--------------------------------------------------------------------------------------------------
 
     public void saveExercise(View view) {
+
+        for (int row = 4; row <= iNoOfRows; row++) {
+            for (int cell = 0; cell <= 10; cell++) {
+                String id = row + "" + cell;
+
+                try {
+                    EditText edText = (EditText) findViewById(Integer.parseInt(id));
+                    if (edText.getText().toString() != null && !edText.getText().toString().equals("")) {
+                        sTabellArr[row][cell] = edText.getText().toString();
+                    } else if (edText.getText().toString() != null && edText.getText().toString().equals("")) {
+                        sTabellArr[row][cell] = edText.getHint().toString();
+                    }
+                } catch (Exception e) {
+
+                }
+
+                /*
+                if (sTabellArr[row][cell] != null) {
+                    String id = row + "" + cell;
+                    EditText edText = (EditText) findViewById(Integer.parseInt(id));
+                    if (!edText.getText().toString().equals("")) {
+                        printToTextView(edText.getText().toString());
+                    }
+                    //printToTextView(id +"");
+                    //sTabellArr[row][cell] = row + "." + cell;
+                    //printToTextView(sTabellArr[row][cell]);
+                }
+
+                */
+            }
+        }
+
+
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
         Save.saveExercise(exercise_a);
 
@@ -104,7 +139,7 @@ public class gymprogram_a extends AppCompatActivity {
 
     public void showOldValue(View view) {
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
-        printToTextView(Save.showOldValue(exercise_a));
+        printToTextView(Save.showOldValue(exercise_a) + "\n" + sTabellArr[4][2]);
     }
 
 //--------------------------------------------------------------------------------------------------
@@ -143,8 +178,8 @@ public class gymprogram_a extends AppCompatActivity {
     void newRow(int iNoOfCells) {
         if (iNoOfCells > 0) {
 //          int inputLength = 1;
-
-            String sOut = "Antal rader: " + ++iNoOfRows;
+            iNoOfRows++;
+            String sOut = "Antal rader: " + iNoOfRows;
 
             //Sätter tabelldata
             TableLayout table = (TableLayout) findViewById(R.id.table1);
@@ -153,6 +188,7 @@ public class gymprogram_a extends AppCompatActivity {
 
             int cell = 0;
             String sCellId = iNoOfRows + "" + cell;
+
 
             //Första cellen - Träningsmomentets namn
             EditText etHeaderExercise = new EditText(this);
@@ -171,6 +207,7 @@ public class gymprogram_a extends AppCompatActivity {
                 //newWeight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
                 newWeight.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 newWeight.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            //Sätter ID för cellen/EditText.
                 newWeight.setId(Integer.parseInt(sCellId));
                 newWeight.setNextFocusDownId((Integer.parseInt(sCellId) + 1));
                 row.addView(newWeight);
@@ -181,6 +218,7 @@ public class gymprogram_a extends AppCompatActivity {
                 //newReps.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
                 newReps.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 newReps.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+            //Sätter ID för cellen/EditText.
                 newReps.setId(Integer.parseInt(sCellId));
                 if (cell < iNoOfCells) {
                     newReps.setNextFocusDownId((Integer.parseInt(sCellId) + 1));
@@ -189,7 +227,6 @@ public class gymprogram_a extends AppCompatActivity {
                     newReps.setNextFocusDownId(((Integer.parseInt(sCellId) + 9)/10)*10);
                 }
                 row.addView(newReps);
-                sOut = sCellId + "";
             }
 
 
@@ -200,7 +237,6 @@ public class gymprogram_a extends AppCompatActivity {
         input1.setFilters(FilterArray);
         //input1.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(inputLength)});
         */
-
 
             //Infogar ny rad
             table.addView(row);

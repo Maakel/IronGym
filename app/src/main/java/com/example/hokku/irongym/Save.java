@@ -47,10 +47,6 @@ public class Save extends AppCompatActivity {
     // Save value of exercise.
     public static void saveExercise(SharedPreferences exercise_a){
 
-
-
-
-
         SharedPreferences.Editor editor = exercise_a.edit();
 
 
@@ -65,6 +61,14 @@ public class Save extends AppCompatActivity {
         editor.putString("CalfRaiseWeight1", calfraiseArrayWeight[0]);
 
         editor.apply();
+
+
+    //Början på sparfunktion för en array
+        SharedPreferences.Editor editArray = exercise_a.edit();
+        editArray.putInt("arraySize", gymprogram_a.sTabellArr.length);
+        for (int cell=0; cell < gymprogram_a.sTabellArr.length; cell++) {
+
+        }
 
 
     }
