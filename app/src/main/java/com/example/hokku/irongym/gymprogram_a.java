@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewDebug;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -23,14 +22,13 @@ public class gymprogram_a extends AppCompatActivity {
 
     String sCalfRaiseWeight1 = null;
 
-    public static TextView tvTest;
 
-    static int year;
-    static int month;
-    static int day;
-    static int hour;
-    static int minute;
 
+    static String year;
+    static String month;
+    static String day;
+    static String hour;
+    static String minute;
     static String sDateTime;
 
 
@@ -39,90 +37,78 @@ public class gymprogram_a extends AppCompatActivity {
     //Antalet celler (vikt+reps) som är definerade i activity_gymprogram_a.xml
     int iNoOfCells; //= 6;
 
+//--------------------------------------------------------------------------------------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gymprogram_a);
 
-        tvTest = (TextView)findViewById(R.id.textView);
+        //Skapar nya rader
+        addNewRows(1,4);
 
 
+        /*
         final EditText etSquatsWeight1 = (EditText) findViewById(R.id.squatsWeight1);
         //final EditText etSquatsReps = (EditText) findViewById(R.id.squatsReps);
-
-
         etSquatsWeight1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (!hasFocus) {
-
                     sSquatWeight = etSquatsWeight1.getText().toString();
-
                     if (sSquatWeight.length() > 0) {
-
                         Save.squatsArrayWeight[0] = sSquatWeight;
-
                     }
-
                 }
             }
         });
 
         final EditText etcalfRaiseWeight1 = (EditText) findViewById(R.id.calfraiseWeight1) ;
-
-
         etcalfRaiseWeight1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (!hasFocus) {
-
                     sCalfRaiseWeight1 = etcalfRaiseWeight1.getText().toString();
-
                     if (sCalfRaiseWeight1.length() > 0) {
-
                         Save.calfraiseArrayWeight [0] = sCalfRaiseWeight1;
-
                     }
-
                 }
             }
         });
-
+        */
     }
+
+//--------------------------------------------------------------------------------------------------
 
     public void saveExercise(View view) {
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
         Save.saveExercise(exercise_a);
 
         Calendar cal = Calendar.getInstance();
-        year = cal.get(Calendar.YEAR);
-        month = cal.get(Calendar.MONTH);
-        day = cal.get(Calendar.DAY_OF_MONTH);
-        hour = cal.get(Calendar.HOUR);
-        minute = cal.get(Calendar.MINUTE);
+        year = Integer.toString(cal.get(Calendar.YEAR));
+        month = (Integer.toString(cal.get(Calendar.MONTH) + 1));
+        if (cal.get(Calendar.MONTH) < 10){ month = 0 + month; }
+        day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
+        if (cal.get(Calendar.DAY_OF_MONTH) < 10){ day = 0 + day; }
+        hour = Integer.toString(cal.get(Calendar.HOUR));
+        minute = Integer.toString(cal.get(Calendar.MINUTE));
 
-        sDateTime = Integer.toString(year) +""+ Integer.toString(month) +""+ Integer.toString(day);
+        sDateTime = year + month + day;
+        //sDateTime = year + month + day + "\n" + hour +":"+ minute;
 
-
-
-        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
-    }
-
-
-    public void showOldValue(View view) {
-        SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
-        Save.showOldValue(exercise_a);
-
-
-
+        Toast.makeText(this, R.string.saved, Toast.LENGTH_LONG).show();
     }
 
 //--------------------------------------------------------------------------------------------------
 
-//Körs när man trycker på +. Lägger till en ny rad i tabellen.
+    public void showOldValue(View view) {
+        SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
+        printToTextView(Save.showOldValue(exercise_a));
+    }
+
+//--------------------------------------------------------------------------------------------------
+//Körs när man trycker på +. Lägger till en ny rad med X antal celler i tabellen.
     public void addExercise (View view) {
         EditText etSett = (EditText) findViewById(R.id.noOfSett);
         //Hämtar Sett värdet för antal celler som skall byggas.
@@ -141,9 +127,22 @@ public class gymprogram_a extends AppCompatActivity {
         }
 //TODO: Problem när iNoOfCells är större än 10 för då mixas rad och cellvärden i sCellId = svårt att läsa ut! Ändra till double?
 
+        newRow(iNoOfCells);
+    }
 
+//--------------------------------------------------------------------------------------------------
+//Skapar flera nya rader
+    void addNewRows(int iNewRows,int iCells) {
+        for (int row = 0; row<iNewRows; row++) {
+            newRow(iCells);
+        }
+    }
+
+//--------------------------------------------------------------------------------------------------
+//Skapar en ny rad
+    void newRow(int iNoOfCells) {
         if (iNoOfCells > 0) {
-            //        int inputLength = 1;
+//          int inputLength = 1;
 
             String sOut = "Antal rader: " + ++iNoOfRows;
 
@@ -195,7 +194,7 @@ public class gymprogram_a extends AppCompatActivity {
 
 
 
-/*
+        /* //Test för att begränsa input
         InputFilter[] FilterArray = new InputFilter[1];
         FilterArray[0] = new InputFilter.LengthFilter(inputLength);
         input1.setFilters(FilterArray);
@@ -208,6 +207,8 @@ public class gymprogram_a extends AppCompatActivity {
             printToTextView(sOut);
         }
     }
+
+//--------------------------------------------------------------------------------------------------
 
     //Visar en String i TextView mellan knapparna "Spara" och "Visa"
     void printToTextView(String output) {

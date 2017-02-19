@@ -64,14 +64,14 @@ public class Save extends AppCompatActivity {
 
         editor.putString("CalfRaiseWeight1", calfraiseArrayWeight[0]);
 
-        editor.commit();
+        editor.apply();
 
 
     }
 
     // Print out saved data in  textview
 
-    public static void showOldValue(SharedPreferences exercise_a){
+    public static String showOldValue(SharedPreferences exercise_a){
 
         String sq1 = exercise_a.getString("squats1","");
         String sq2 = exercise_a.getString("squats2","");
@@ -81,7 +81,7 @@ public class Save extends AppCompatActivity {
 
         String crw1 = exercise_a.getString("CalfRaiseWeight1", "");
 
-        gymprogram_a.tvTest.setText(crw1 + gymprogram_a.sDateTime);
+        return (crw1 + gymprogram_a.sDateTime);
 
         //gymprogram_a.tv.setText(sq1);
 

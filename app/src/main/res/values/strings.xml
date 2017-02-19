@@ -13,6 +13,7 @@
     <string name="vikt">Vikt</string>
     <string name="visa">Visa</string>
     <string name="spara">Spara</string>
+    <string name="saved">Sparad!</string>
 
     <string name="exerciseHeader">Övning:</string>
 </resources>

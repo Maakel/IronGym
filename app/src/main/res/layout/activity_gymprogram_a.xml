@@ -22,8 +22,6 @@
                 android:layout_height="match_parent"
                 android:background="#b9b9b9">
 
-
-
                 <TextView
                     android:layout_column="1"
                     android:text="@string/vikt"
@@ -45,32 +43,34 @@
                     android:textSize="14sp"
                     android:padding="3dp" />
 
-
-
                 <TextView
                     android:layout_column="4"
                     android:text="@string/reps"
                     android:textAlignment="center"
                     android:textSize="14sp"
                     android:padding="3dp" />
+
                 <TextView
                     android:layout_column="5"
                     android:text="@string/vikt"
                     android:textAlignment="center"
                     android:textSize="14sp"
                     android:padding="3dp" />
+
                 <TextView
                     android:layout_column="6"
                     android:text="@string/reps"
                     android:textAlignment="center"
                     android:textSize="14sp"
                     android:padding="3dp" />
+
                 <TextView
                     android:layout_column="7"
                     android:text="@string/vikt"
                     android:textAlignment="center"
                     android:textSize="14sp"
                     android:padding="3dp" />
+
                 <TextView
                     android:layout_column="8"
                     android:text="@string/reps"
@@ -81,7 +81,6 @@
 
             <TableRow>
                 <TextView
-
                     android:layout_column="0"
                     android:text="@string/knaboj"
                     android:textSize="16sp"
@@ -99,18 +98,14 @@
                     android:nextFocusDown="@+id/squatsReps1"/>
 
                 <EditText
-
                     android:hint="10"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
                     android:id="@+id/squatsReps1"
-
                     android:layout_column="2"
                     android:inputType="number"
                     android:maxLength="2"
-
                     android:nextFocusDown="@+id/squatsWeight2"
-
                     />
 
                 <EditText
@@ -205,7 +200,7 @@
                     android:nextFocusDown="@+id/benchpressWeight2"
                     />
                     
-                    <EditText
+                <EditText
                     android:hint="1"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -215,7 +210,7 @@
                     android:id="@+id/benchpressWeight2"
                     android:nextFocusDown="@+id/benchpressReps2"/>
                     
-                     <EditText
+                <EditText
                     android:hint="10"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -226,7 +221,7 @@
                     android:nextFocusDown="@+id/benchpressWeight3"
                     />
                     
-                    <EditText
+                <EditText
                     android:hint="1"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -236,7 +231,7 @@
                     android:id="@+id/benchpressWeight3"
                     android:nextFocusDown="@+id/benchpressReps3"/>
                     
-                      <EditText
+                <EditText
                     android:hint="10"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -247,7 +242,7 @@
                     android:nextFocusDown="@+id/benchpressWeight4"
                     />
                     
-                    <EditText
+                <EditText
                     android:hint="1"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -257,7 +252,7 @@
                     android:id="@+id/benchpressWeight4"
                     android:nextFocusDown="@+id/benchpressReps4"/>
                     
-                       <EditText
+                <EditText
                     android:hint="10"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -267,7 +262,6 @@
                     android:maxLength="2"
                     android:nextFocusDown="@+id/rowWeight1"
                     />
-
                 
             </TableRow>
 
@@ -308,7 +302,7 @@
                     android:nextFocusDown="@+id/rowReps2"
                     android:id="@+id/rowWeight2" />
                     
-                    <EditText
+                <EditText
                     android:hint="10"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -319,7 +313,7 @@
                     android:nextFocusDown="@+id/rowWeight3"
                     />
                     
-                      <EditText
+                <EditText
                     android:hint="1"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -329,7 +323,7 @@
                     android:nextFocusDown="@+id/rowReps3"
                     android:id="@+id/rowWeight3" />
                     
-                      <EditText
+                <EditText
                     android:hint="10"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -340,8 +334,7 @@
                     android:nextFocusDown="@+id/rowWeight4"
                     />
 
-
-    								<EditText
+    			<EditText
                     android:hint="1"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -351,7 +344,7 @@
                     android:nextFocusDown="@+id/rowReps4"
                     android:id="@+id/rowWeight4" />
                     
-                       <EditText
+                <EditText
                     android:hint="10"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -360,7 +353,6 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:nextFocusDown="@+id/calfraiseWeight1"
-                    
                     />
                     
                 
@@ -371,7 +363,7 @@
                     android:layout_column="0"
                     android:hint="@string/vadpress"
                     android:textSize="16sp"
-                    android:layout_marginLeft="-4dp"
+                    android:layout_marginStart="-4dp"
                     android:inputType="textCapSentences"/>
 
                 <EditText
@@ -395,7 +387,7 @@
                     android:nextFocusDown="@+id/calfraiseWeight2"
                     />
 										
-										<EditText
+                <EditText
                     android:hint="1"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -405,7 +397,7 @@
                     android:nextFocusDown="@+id/calfraiseReps2"
                     android:id="@+id/calfraiseWeight2" />
                     
-                      <EditText
+                <EditText
                     android:hint="10"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -416,7 +408,7 @@
                     android:nextFocusDown="@+id/calfraiseWeight3"
                     />
                     
-                    	<EditText
+                <EditText
                     android:hint="1"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -426,7 +418,7 @@
                     android:nextFocusDown="@+id/calfraiseReps3"
                     android:id="@+id/calfraiseWeight3" />
                     
-                     <EditText
+                <EditText
                     android:hint="10"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -437,7 +429,7 @@
                     android:nextFocusDown="@+id/calfraiseWeight4"
                     />
                     
-                    	<EditText
+                <EditText
                     android:hint="1"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -447,7 +439,7 @@
                     android:nextFocusDown="@+id/calfraiseReps4"
                     android:id="@+id/calfraiseWeight4" />
                     
-                    <EditText
+                <EditText
                     android:hint="10"
                     tools:ignore="HardcodedText"
                     android:textAlignment="center"
@@ -455,11 +447,8 @@
                     android:layout_column="8"
                     android:inputType="number"
                     android:maxLength="2"
-
                     />
-                    
-										
-               
+
             </TableRow>
         </TableLayout>
 
@@ -472,15 +461,26 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/noOfSett"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Sett:"
+            android:text="Sett:"
+            android:textSize="18sp"
+            android:id="@+id/settText"
+            android:layout_toEndOf="@id/addExercise"
+            android:layout_alignTop="@id/addExercise"
+            android:layout_marginTop="15dp"/>
+
+        <EditText
+            android:id="@+id/noOfSett"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:hint="2"
+            tools:ignore="HardcodedText"
             android:inputType="number"
             android:maxLength="1"
             android:textAlignment="center"
-            android:layout_toEndOf="@id/addExercise"
+            android:layout_toEndOf="@id/settText"
             android:layout_alignBottom="@id/addExercise"/>
 
         <Button
@@ -489,7 +489,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/buttonSave"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:onClick="saveExercise"/>
 
@@ -506,7 +505,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/buttonShow"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:onClick="showOldValue"
             android:layout_below="@+id/addExercise" />
