@@ -22,6 +22,8 @@ public class Save extends AppCompatActivity {
     int[] benchpressArrayWeight = new int[5];
     int[] rowArrayWeight = new int[5];
     static String[] calfraiseArrayWeight = new String[4];
+    static String[] squatsArrayReps = new String[4];
+    //static String sDateTimeSave;
 
 
 
@@ -55,6 +57,7 @@ public class Save extends AppCompatActivity {
         editor.putString("squats3", squatsArrayWeight[2]);
         editor.putString("squats4", squatsArrayWeight[3]);
         editor.putString("squats5", squatsArrayWeight[4]);
+        editor.putString("datetime", gymprogram_a.sDateTime);
 
         //CalfRaiseWeight
 
@@ -85,7 +88,10 @@ public class Save extends AppCompatActivity {
 
         String crw1 = exercise_a.getString("CalfRaiseWeight1", "");
 
-        return (crw1 + gymprogram_a.sDateTime);
+        String dt = exercise_a.getString("datetime","");
+
+
+        return (crw1 + dt);
 
         //gymprogram_a.tv.setText(sq1);
 

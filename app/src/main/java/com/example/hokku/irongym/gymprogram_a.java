@@ -13,11 +13,14 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class gymprogram_a extends AppCompatActivity {
 
-
+    static String sTest;
     String sSquatWeight = null;
 
     String sCalfRaiseWeight1 = null;
@@ -121,15 +124,21 @@ public class gymprogram_a extends AppCompatActivity {
         Save.saveExercise(exercise_a);
 
         Calendar cal = Calendar.getInstance();
-        year = Integer.toString(cal.get(Calendar.YEAR));
+        /*year = Integer.toString(cal.get(Calendar.YEAR));
         month = (Integer.toString(cal.get(Calendar.MONTH) + 1));
         if (cal.get(Calendar.MONTH) < 10){ month = 0 + month; }
         day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
         if (cal.get(Calendar.DAY_OF_MONTH) < 10){ day = 0 + day; }
         hour = Integer.toString(cal.get(Calendar.HOUR));
         minute = Integer.toString(cal.get(Calendar.MINUTE));
+*/
 
-        sDateTime = year + month + day;
+        SimpleDateFormat sdf = new  SimpleDateFormat ("yyyy/MM/dd/  HH:mm:ss");
+        sDateTime = sdf.format(cal.getTime());
+
+
+
+        //sDateTime = year + month + day;
         //sDateTime = year + month + day + "\n" + hour +":"+ minute;
 
         Toast.makeText(this, R.string.saved, Toast.LENGTH_LONG).show();
