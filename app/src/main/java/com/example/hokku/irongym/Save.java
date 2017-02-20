@@ -16,6 +16,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 
+
+
 public class Save extends AppCompatActivity {
 
     static String[] squatsArrayWeight = new String[5];
@@ -24,6 +26,7 @@ public class Save extends AppCompatActivity {
     static String[] calfraiseArrayWeight = new String[4];
     static String[] squatsArrayReps = new String[4];
     //static String sDateTimeSave;
+    static int sTest =0 ;
 
 
 
@@ -40,14 +43,12 @@ public class Save extends AppCompatActivity {
 
     }
 
-   /* public static void date(){
-        Calendar cal = Calendar.getInstance();
-         year = cal.get(Calendar.YEAR);
-    }*/
 
 
     // Save value of exercise.
     public static void saveExercise(SharedPreferences exercise_a){
+
+        sTest ++;
 
 
 
@@ -56,7 +57,7 @@ public class Save extends AppCompatActivity {
         SharedPreferences.Editor editor = exercise_a.edit();
 
 
-       editor.putString("squats1", squatsArrayWeight[0]);
+       editor.putString(sTest+"squats1", squatsArrayWeight[0]);
         editor.putString("squats2", squatsArrayWeight[1]);
         editor.putString("squats3", squatsArrayWeight[2]);
         editor.putString("squats4", squatsArrayWeight[3]);
@@ -76,7 +77,10 @@ public class Save extends AppCompatActivity {
 
     public static String showOldValue(SharedPreferences exercise_a){
 
-        String sq1 = exercise_a.getString("squats1","");
+
+
+
+        String sq1 = exercise_a.getString(sTest+"squats1","");
         String sq2 = exercise_a.getString("squats2","");
         String sq3 = exercise_a.getString("squats3","");
         String sq4 = exercise_a.getString("squats4","");

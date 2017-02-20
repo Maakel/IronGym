@@ -1,6 +1,7 @@
 package com.example.hokku.irongym;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.util.List;
+
 
 public class gymprogram_a extends AppCompatActivity {
 
@@ -35,6 +37,9 @@ public class gymprogram_a extends AppCompatActivity {
     static String sDateTime;
 
 
+
+
+
     //Sätt till antalet övningar som är definerade i activity_gymprogram_a.xml
     int iNoOfRows = 4;
     //Antalet celler (vikt+reps) som är definerade i activity_gymprogram_a.xml
@@ -49,6 +54,7 @@ public class gymprogram_a extends AppCompatActivity {
 
         //Skapar nya rader
         addNewRows(1,4);
+
 
 
         /*
@@ -84,27 +90,20 @@ public class gymprogram_a extends AppCompatActivity {
 
 //--------------------------------------------------------------------------------------------------
 
+
     public void saveExercise(View view) {
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
         Save.saveExercise(exercise_a);
 
         Calendar cal = Calendar.getInstance();
-        /*year = Integer.toString(cal.get(Calendar.YEAR));
-        month = (Integer.toString(cal.get(Calendar.MONTH) + 1));
-        if (cal.get(Calendar.MONTH) < 10){ month = 0 + month; }
-        day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
-        if (cal.get(Calendar.DAY_OF_MONTH) < 10){ day = 0 + day; }
-        hour = Integer.toString(cal.get(Calendar.HOUR));
-        minute = Integer.toString(cal.get(Calendar.MINUTE));
-*/
+
 
         SimpleDateFormat sdf = new  SimpleDateFormat ("yyyy/MM/dd/  HH:mm:ss");
         sDateTime = sdf.format(cal.getTime());
 
 
 
-        //sDateTime = year + month + day;
-        //sDateTime = year + month + day + "\n" + hour +":"+ minute;
+
 
         Toast.makeText(this, R.string.saved, Toast.LENGTH_LONG).show();
     }
@@ -114,6 +113,8 @@ public class gymprogram_a extends AppCompatActivity {
     public void showOldValue(View view) {
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
         printToTextView(Save.showOldValue(exercise_a));
+        Intent intent = new Intent(this, History.class);
+        startActivity(intent);
     }
 
 //--------------------------------------------------------------------------------------------------
