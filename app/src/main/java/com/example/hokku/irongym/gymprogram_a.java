@@ -20,7 +20,7 @@ import java.util.TimeZone;
 
 public class gymprogram_a extends AppCompatActivity {
 
-    static String sTest;
+
     String sSquatWeight = null;
 
     String sCalfRaiseWeight1 = null;
@@ -148,7 +148,7 @@ public class gymprogram_a extends AppCompatActivity {
 
     public void showOldValue(View view) {
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
-        printToTextView(Save.showOldValue(exercise_a) + "\n" + sTabellArr[4][2]);
+        printToTextView(Save.showOldValue(exercise_a) + " " + sTabellArr[iNoOfRows][2]);
     }
 
 //--------------------------------------------------------------------------------------------------
@@ -197,7 +197,6 @@ public class gymprogram_a extends AppCompatActivity {
 
             int cell = 0;
             String sCellId = iNoOfRows + "" + cell;
-
 
             //Första cellen - Träningsmomentets namn
             EditText etHeaderExercise = new EditText(this);
