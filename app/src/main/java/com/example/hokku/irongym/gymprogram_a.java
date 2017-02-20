@@ -14,6 +14,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,7 +27,7 @@ public class gymprogram_a extends AppCompatActivity {
     String sSquatWeight = null;
 
     String sCalfRaiseWeight1 = null;
-
+    static ArrayList<String> myList;
 
 
     static String year;
@@ -54,7 +55,7 @@ public class gymprogram_a extends AppCompatActivity {
 
         //Skapar nya rader
         addNewRows(1,4);
-
+        myList = new ArrayList<String>();
 
 
         /*
@@ -89,7 +90,13 @@ public class gymprogram_a extends AppCompatActivity {
     }
 
 //--------------------------------------------------------------------------------------------------
+    public void addToList(String dt){
 
+        myList.add(dt);
+
+
+
+    }
 
     public void saveExercise(View view) {
         SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
@@ -98,8 +105,14 @@ public class gymprogram_a extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
 
 
-        SimpleDateFormat sdf = new  SimpleDateFormat ("yyyy/MM/dd/  HH:mm:ss");
+        SimpleDateFormat sdf = new  SimpleDateFormat ("yyyy/MM/dd    HH:mm:ss");
         sDateTime = sdf.format(cal.getTime());
+
+        addToList(sDateTime);
+
+
+
+
 
 
 

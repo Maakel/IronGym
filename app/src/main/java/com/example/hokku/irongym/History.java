@@ -8,17 +8,22 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView;
 
+
+
 public class History extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        String[] history = {"träning1", "träning2", "träning3"};
 
-        ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, history);
-        ListView historyListVeiw = (ListView) findViewById(R.id.historyListVeiw);
+
+        String[] mylist = {"träning1", "träning2", "träning3"};
+
+        ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, gymprogram_a.myList);
+        ListView historyListVeiw = (ListView) findViewById(R.id.historyListView);
         historyListVeiw.setAdapter(historyAdapter);
 
 
