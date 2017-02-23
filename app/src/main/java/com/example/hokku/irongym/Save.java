@@ -13,9 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Calendar;
 
+import java.util.HashSet;
 import java.util.Locale;
-
-
+import java.util.Set;
 
 
 public class Save extends AppCompatActivity {
@@ -27,6 +27,8 @@ public class Save extends AppCompatActivity {
     static String[] squatsArrayReps = new String[4];
     //static String sDateTimeSave;
     static int sTest =0 ;
+
+
 
 
 
@@ -55,6 +57,7 @@ public class Save extends AppCompatActivity {
 
 
         SharedPreferences.Editor editor = exercise_a.edit();
+
 
 
        editor.putString(sTest+"squats1", squatsArrayWeight[0]);
