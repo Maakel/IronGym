@@ -10,13 +10,11 @@
     android:background="@color/colorPrimaryDark">
 
     <Button
-        android:text="@string/pass_a"
+        android:text="@string/button_NewExerice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/mainCenter"
         android:layout_centerHorizontal="true"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
         android:id="@+id/passA"
         android:onClick="pass_a" />
 

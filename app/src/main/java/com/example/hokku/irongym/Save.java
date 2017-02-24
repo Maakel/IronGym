@@ -34,10 +34,6 @@ public class Save extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save);
-
-
-
-
     }
 
    /* public static void date(){
@@ -46,13 +42,26 @@ public class Save extends AppCompatActivity {
     }*/
 
 
+    public static void saveValue(SharedPreferences exercise_a, String sKey, String sValue) {
+        SharedPreferences.Editor edit = exercise_a.edit();
+        edit.putString(sKey, sValue);
+        edit.apply();
+    }
+
+    public static String getValue(SharedPreferences exercise_a, String sKey) {
+        String value;
+        value = exercise_a.getString(sKey,"");
+        return value;
+    }
+
+
     // Save value of exercise.
     public static void saveExercise(SharedPreferences exercise_a){
 
         SharedPreferences.Editor editor = exercise_a.edit();
 
 
-       editor.putString("squats1", squatsArrayWeight[0]);
+        editor.putString("squats1", squatsArrayWeight[0]);
         editor.putString("squats2", squatsArrayWeight[1]);
         editor.putString("squats3", squatsArrayWeight[2]);
         editor.putString("squats4", squatsArrayWeight[3]);
