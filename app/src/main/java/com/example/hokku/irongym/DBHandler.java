@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class DBHandler extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "irongym.db";
     static final String TABLE_PRODUCTS = "exercise";
     static final String COLUMN_ID = "_id";
@@ -16,7 +16,6 @@ class DBHandler extends SQLiteOpenHelper{
     static final String COLUMN_WEIGHT = "weight";
     static final String COLUMN_REPS = "reps";
     static final String COLUMN_DATETIME = "date";
-    static final String COLUMN_TIME = "time";
 
     DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
@@ -27,7 +26,10 @@ class DBHandler extends SQLiteOpenHelper{
         //Gör ett query androp som skapar en ny tabell första gången den körs.
         String query = "CREATE TABLE " + TABLE_PRODUCTS + "( " +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_EXERCISENAME + " VARCHAR(30) " +
+                COLUMN_EXERCISENAME + " VARCHAR(30), " +
+                COLUMN_WEIGHT + " TEXT, " +
+                COLUMN_REPS + " TEXT, " +
+                COLUMN_DATETIME + " DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP " +
                 ");";
         db.execSQL(query);
 
@@ -46,28 +48,31 @@ class DBHandler extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    //Tar bort hela tabellen
     void dropTable(){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
         onCreate(db);
     }
 
-    //Lägg till ny rad i DB
-    void addExercise(SQL sql) {
+    //Skapar en ny rad i DB
+    void saveExerciseRow() {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_EXERCISENAME, sql.get_exercise());
-        //values.put(COLUMN_REPS, sql.get_reps());
-        //values.put(COLUMN_WEIGHT, sql.get_weight());
+        values.put(COLUMN_EXERCISENAME, SQL.getExercise());
+        values.put(COLUMN_REPS, SQL.getReps());
+        values.put(COLUMN_WEIGHT, SQL.getWeight());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_PRODUCTS, null, values);
         db.close();
     }
 
+    //Tar bort data i tabellen
     void deleteRecord(String rowToDelete){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_EXERCISENAME + "=\"" + rowToDelete);
     }
 
+    //Hämtar data från tabellen
     String dbToString(){
         String dbString ="";
         SQLiteDatabase db = getWritableDatabase();
@@ -80,9 +85,11 @@ class DBHandler extends SQLiteOpenHelper{
 
         while (!c.isAfterLast()){
             if (c.getString(c.getColumnIndex("exerciseName")) != null) {
+                dbString += c.getString(c.getColumnIndex("_id")) + " ";
                 dbString += c.getString(c.getColumnIndex("exerciseName"));
-                //dbString += " " + c.getString(c.getColumnIndex("weight"));
-                //dbString += " " + c.getString(c.getColumnIndex("reps"));
+                dbString += " " + c.getString(c.getColumnIndex("weight"));
+                dbString += " " + c.getString(c.getColumnIndex("reps"));
+                //dbString += " " + c.getString(c.getColumnIndex("date"));
                 dbString += "\n";
             }
             c.moveToNext();

@@ -1,7 +1,5 @@
 package com.example.hokku.irongym;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,42 +10,15 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class gymprogram_a extends AppCompatActivity {
 
     DBHandler dbHandler;
 
-
-    String sSquatWeight = null;
-
-    String sCalfRaiseWeight1 = null;
-
-    String exerciseHeader = "";
-
-
-/*
-    static String year;
-    static String month;
-    static String day;
-    static String hour;
-    static String minute;
-    */
-    static String sDateTime;
-
-
     //Sätt till antalet övningar som är definerade i activity_gymprogram_a.xml
     int iNoOfRows = 0;
     //Antalet celler (vikt+reps) som är definerade i activity_gymprogram_a.xml
     int iNoOfCells; //= 6;
-
-    int iNoOfSaves;
-
-    static String[][] sTabellArr = new String[15][15];
-    //TODO: Begränsa så att antalet rader inte blir fler än vad arrayen klarar!
 
 //--------------------------------------------------------------------------------------------------
 
@@ -58,8 +29,9 @@ public class gymprogram_a extends AppCompatActivity {
 
         dbHandler = new DBHandler(this, null, null, 1);
 
-    //Skapar nya rader
+    //Skapar nya rader, celler.
         addNewRows(5,6);
+        //TODO: Sätt dessa via inställningar i appen.
 
 
         /*
@@ -98,25 +70,71 @@ public class gymprogram_a extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        //printToTextView(iNoOfSaves + "");
     }
 
 
 //--------------------------------------------------------------------------------------------------
 //Körs när man trycker på knappen SPARA
     public void saveExercise(View view) {
+        //Skannar igenom hela tabellen
+        for (int row = 1; row <= iNoOfRows; row++) {
+            //Körs för varje ny rad
+            String sWeightMemory = "";
+            String sRepsMemory = "";
 
-        String id0 = "10";
+            for (int cell = 0; cell <= 10; cell++) {
+                //Körs för varje ny cell
+                String id = row + "" + cell;
 
-        SQL sqll = new SQL("test");
+                //Kollar om data skall sparas från "Text" eller "Hint"
+                try {
+                    EditText edText = (EditText) findViewById(Integer.parseInt(id));
+                    if (edText.getText().toString() != null && !edText.getText().toString().equals("")) {
+                        //Om edittext är ifylld av användaren körs getText.
 
-        EditText edExercise = (EditText) findViewById(Integer.parseInt(id0));
-        EditText edWeight = (EditText) findViewById(Integer.parseInt("01"));
-        EditText edReps = (EditText) findViewById(Integer.parseInt("02"));
-        SQL exercise = new SQL(edExercise.getText().toString());
-        /*SQL weight = new SQL(edWeight.getText().toString());
-        SQL reps = new SQL(edReps.getText().toString());*/
-        dbHandler.addExercise(exercise);
+                        if (cell == 0) {
+                            SQL.set_exercise(edText.getText().toString());
+                        } else if (cell % 2 != 0) { //Läser celler med ojämna nummer.
+                            sWeightMemory += edText.getText().toString() + ",";
+                        }else if (cell % 2 == 0 && cell % 10 != 0) { //Läser celler med jämna nummer men som inte har sista siffran 0.
+                            sRepsMemory += edText.getText().toString() + ",";
+                        }
+
+                    } else if (edText.getText().toString() != null && edText.getText().toString().equals("")) {
+                        //Om edittext inte är ifylld körs getHint.
+                        if (cell == 0) {
+                            SQL.set_exercise(edText.getHint().toString());
+                        } else if (cell % 2 != 0) { //Läser celler med ojämna nummer.
+                            sWeightMemory += edText.getHint().toString() + ",";
+                        }else if (cell % 2 == 0 && cell % 10 != 0) { //Läser celler med jämna nummer men som inte har sista siffran 0.
+                            sRepsMemory += edText.getHint().toString() + ",";
+                        }
+                    }
+                } catch (Exception e) {
+
+                }
+
+
+
+                /*
+                if (sTabellArr[row][cell] != null) {
+                    String id = row + "" + cell;
+                    EditText edText = (EditText) findViewById(Integer.parseInt(id));
+                    if (!edText.getText().toString().equals("")) {
+                        printToTextView(edText.getText().toString());
+                    }
+                    //printToTextView(id +"");
+                    //sTabellArr[row][cell] = row + "." + cell;
+                    //printToTextView(sTabellArr[row][cell]);
+
+                }
+                */
+            }
+            SQL.set_weight(sWeightMemory);
+            SQL.set_reps(sRepsMemory);
+            dbHandler.saveExerciseRow();
+        }
+
         printDatabase();
 
 
@@ -181,10 +199,14 @@ public class gymprogram_a extends AppCompatActivity {
 //--------------------------------------------------------------------------------------------------
 //Körs när man trycker på knappen VISA
     public void showOldValue(View view) {
+
+    }
+
+//--------------------------------------------------------------------------------------------------
+//Körs när man trycker på knappen "Del DB"
+    public void deleteDB(View view) {
         dbHandler.dropTable();
-        printDatabase();
-        //SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
-        //printToTextView(Save.showOldValue(exercise_a) + "");
+        printToTextView("Databasen är tömd!");
     }
 
 //--------------------------------------------------------------------------------------------------
@@ -215,10 +237,10 @@ public class gymprogram_a extends AppCompatActivity {
     void addNewRows(int iNewRows,int iCells) {
         Resources resource = getResources();
         String[] exerciseSuggestion = resource.getStringArray(R.array.exerciseSuggestions);
-        int iExerciseSuggLen = exerciseSuggestion.length;
+        int iNoOfExerciseSuggestion = exerciseSuggestion.length;
 
         for (int row = 0; row<iNewRows; row++) {
-            if (iExerciseSuggLen>row) {
+            if (iNoOfExerciseSuggestion>row) {
                 newRow(iCells, exerciseSuggestion[row]);
             } else {
                 newRow(iCells, "");
@@ -316,8 +338,7 @@ public class gymprogram_a extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        //SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
-        //Save.saveValue(exercise_a, "iNoOfSaves", Integer.toString(iNoOfSaves));
+
         super.onPause();
     }
 }

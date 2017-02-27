@@ -490,14 +490,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttonSave"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/addExercise"
             android:layout_alignParentStart="true"
             android:onClick="saveExercise"/>
+
+        <Button
+            android:text="Del DB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonDelDB"
+            android:layout_below="@id/addExercise"
+            android:layout_centerHorizontal="true"
+            android:onClick="deleteDB"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView"
+            android:layout_below="@id/buttonSave"
+            android:layout_marginTop="10dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"/>
 
@@ -506,10 +517,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttonShow"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/addExercise"
             android:layout_alignParentEnd="true"
             android:onClick="showOldValue"
-            android:layout_below="@+id/addExercise" />
+             />
 
     </RelativeLayout>
 </ScrollView>
