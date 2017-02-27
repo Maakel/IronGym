@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -320,7 +321,19 @@ public class gymprogram_a extends AppCompatActivity {
             //Infogar ny rad
             table.addView(row);
             printToTextView(sOut);
+            scrollDown();
         }
+    }
+
+//--------------------------------------------------------------------------------------------------
+
+    //Scrollar ned till botten av sidan.
+    void scrollDown() {
+        final ScrollView scroll = (ScrollView) findViewById(R.id.activity_gymprogram_a);
+        scroll.postDelayed(new Runnable() {
+            public void run() {scroll.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        }, 50L);
     }
 
 //--------------------------------------------------------------------------------------------------
