@@ -2,6 +2,7 @@
     <string name="app_name">IronGym</string>
     <string name="title_activity_gymprogram_a">gymprogram_a</string>
     <string name="title_activity_gymprogram_b">gymprogram_b</string>
+    <string name="button_NewExerice">Skapa nytt pass</string>
     <string name="pass_a">Pass A</string>
     <string name="pass_b">Pass B</string>
     <string name="knaboj">Knäböj</string>
@@ -16,5 +17,13 @@
     <string name="saved">Sparad!</string>
 
     <string name="exerciseHeader">Övning:</string>
-    <string name="Deadlift">Marklyft</string>
+
+    <string-array name="exerciseSuggestions">
+        <item>Knäböj</item>
+        <item>Bänkpress</item>
+        <item>Rodd</item>
+        <item>Vadpress</item>
+
+
+    </string-array>
 </resources>

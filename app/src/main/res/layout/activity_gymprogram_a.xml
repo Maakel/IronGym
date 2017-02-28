@@ -79,6 +79,7 @@
                     android:padding="3dp" />
             </TableRow>
 
+            <!--
             <TableRow>
                 <TextView
                     android:layout_column="0"
@@ -450,6 +451,7 @@
                     />
 
             </TableRow>
+            -->
         </TableLayout>
 
         <Button
@@ -464,7 +466,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sett:"
+            android:text="Set:"
             android:textSize="18sp"
             android:id="@+id/settText"
             android:layout_toEndOf="@id/addExercise"
@@ -488,14 +490,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttonSave"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/addExercise"
             android:layout_alignParentStart="true"
             android:onClick="saveExercise"/>
+
+        <Button
+            android:text="Del DB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonDelDB"
+            android:layout_below="@id/addExercise"
+            android:layout_centerHorizontal="true"
+            android:onClick="deleteDB"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView"
+            android:layout_below="@id/buttonSave"
+            android:layout_marginTop="10dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"/>
 
@@ -504,10 +517,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttonShow"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/addExercise"
             android:layout_alignParentEnd="true"
             android:onClick="showOldValue"
-            android:layout_below="@+id/addExercise" />
+             />
 
     </RelativeLayout>
 </ScrollView>
