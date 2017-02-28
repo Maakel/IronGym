@@ -104,12 +104,21 @@ class DBHandler extends SQLiteOpenHelper{
         Cursor c = db.rawQuery(query, null);
         //Flyttar pekaren till första raden.
         c.moveToFirst();
+        String buffer = "";
+        String buffer2 = "";
 
         while (!c.isAfterLast()){
             if (c.getString(c.getColumnIndex("exerciseName")) != null) {
 
-                dbDateString += c.getString(c.getColumnIndex("date")) + " ";
-                dbDateString += "\n";
+                buffer = c.getString(c.getColumnIndex("date")) + " ";
+                //Kollar att buffer inte är lika med buffer 2. Detta för att  bara läsa ut ett unikt datumvärde.
+                if(!buffer2.equals(buffer)){
+                    dbDateString += c.getString(c.getColumnIndex("date")) + " ";
+                    buffer2 = c.getString(c.getColumnIndex("date")) + " ";
+                }
+
+
+                //dbDateString += "\n";
             }
             c.moveToNext();
         }
