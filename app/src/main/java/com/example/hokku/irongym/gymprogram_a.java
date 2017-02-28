@@ -1,28 +1,21 @@
 package com.example.hokku.irongym;
 
 import android.content.Intent;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.Intent;
 import android.graphics.Color;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputFilter;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -34,6 +27,7 @@ public class gymprogram_a extends AppCompatActivity {
     int iNoOfRows = 0;
     //Antalet celler (vikt+reps) som är definerade i activity_gymprogram_a.xml
     int iNoOfCells; //= 6;
+    int iMaxNoOfCells = 10;
     String sDateTime;
     public static ArrayList datetimelist;
 
@@ -106,7 +100,7 @@ public class gymprogram_a extends AppCompatActivity {
             String sWeightMemory = "";
             String sRepsMemory = "";
 
-            for (int cell = 0; cell <= 10; cell++) {
+            for (int cell = 0; cell <= iMaxNoOfCells; cell++) {
                 //Körs för varje ny cell
                 String id = row + "" + cell;
 
@@ -159,17 +153,20 @@ public class gymprogram_a extends AppCompatActivity {
             dbHandler.saveExerciseRow();
         }
 
+        Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
         printDatabase();
-        Toast.makeText(this, R.string.saved, Toast.LENGTH_LONG).show();
     }
 
 //--------------------------------------------------------------------------------------------------
 //Körs när man trycker på knappen VISA
     public void showOldValue(View view) {
+        /*
         Intent intent = new Intent(this, History.class);
 
         printDateDatabase();
         startActivity(intent);
+        */
+        showHistory();
     }
 
 //--------------------------------------------------------------------------------------------------
@@ -291,6 +288,49 @@ public class gymprogram_a extends AppCompatActivity {
             table.addView(row);
             printToTextView(sOut);
             scrollDown();
+        }
+    }
+
+//--------------------------------------------------------------------------------------------------
+//Hämtar värden från databasen och sätter dom i tabellen.
+    public void showHistory() {
+
+        String sDbExerciseColName = DBHandler.COLUMN_EXERCISENAME;
+        String sDbWeightColName = DBHandler.COLUMN_WEIGHT;
+        String sDbRepsColName = DBHandler.COLUMN_REPS;
+        int iDbRows = dbHandler.countRows();
+        if (iNoOfRows < iDbRows) {addNewRows((iDbRows - iNoOfRows), 6);}
+        //TODO: Ta reda på antalet celler som krävs.
+
+        for (int iRow = 1; iRow <= iNoOfRows; iRow++) {
+            int iCount = 0;
+
+            for (int iCell = 0; iCell <= iMaxNoOfCells; iCell++) {
+                String sDbAnswer = "";
+                String sId = iRow + "" + iCell;
+                EditText edText = (EditText) findViewById(Integer.parseInt(sId));
+                ArrayList alDbBuff;
+
+                if (iCell == 0) {
+                    sDbAnswer = dbHandler.getDbRow(iRow-1, sDbExerciseColName);
+                    edText.setText(sDbAnswer);
+
+                } else if (iCell % 2 != 0) { //Läser celler med ojämna nummer.
+                    sDbAnswer = dbHandler.getDbRow(iRow-1, sDbWeightColName);
+                    alDbBuff = new ArrayList<String>(Arrays.asList(sDbAnswer.split("\\s*,\\s*")));
+                    try {
+                        edText.setText(alDbBuff.get((iCount)).toString());
+                    } catch (Exception e) {     }
+
+                }else if (iCell % 2 == 0 && iCell % 10 != 0) { //Läser celler med jämna nummer men som inte har sista siffran 0.
+                    sDbAnswer = dbHandler.getDbRow(iRow-1, sDbRepsColName);
+                    alDbBuff = new ArrayList<String>(Arrays.asList(sDbAnswer.split("\\s*,\\s*")));
+                    try {
+                        edText.setText(alDbBuff.get((iCount)).toString());
+                        iCount++;
+                    } catch (Exception e) {     }
+                }
+            }
         }
     }
 
