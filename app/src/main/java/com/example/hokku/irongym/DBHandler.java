@@ -29,15 +29,11 @@ class DBHandler extends SQLiteOpenHelper{
                 COLUMN_EXERCISENAME + " VARCHAR(30), " +
                 COLUMN_WEIGHT + " TEXT, " +
                 COLUMN_REPS + " TEXT, " +
-                COLUMN_DATETIME + " DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP " +
+                COLUMN_DATETIME +  " TEXT "/*" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP "*/ +
                 ");";
         db.execSQL(query);
 
-        /*
-        COLUMN_REPS + " TEXT, " +
-                COLUMN_WEIGHT + " TEXT, " +
-                COLUMN_DATETIME + " DATETIME NOT NULL DEFAULT GETDATE()" +
-                */
+
     }
 
     @Override
@@ -61,6 +57,7 @@ class DBHandler extends SQLiteOpenHelper{
         values.put(COLUMN_EXERCISENAME, SQL.getExercise());
         values.put(COLUMN_REPS, SQL.getReps());
         values.put(COLUMN_WEIGHT, SQL.getWeight());
+        values.put(COLUMN_DATETIME, SQL.getdateTime());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_PRODUCTS, null, values);
         db.close();
@@ -98,5 +95,35 @@ class DBHandler extends SQLiteOpenHelper{
         c.close();
         return dbString;
     }
+    String dbDateToString(){
+        String dbDateString ="";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_PRODUCTS + " WHERE 1";
 
+        //Databaspekar. Går igenom rad för rad.
+        Cursor c = db.rawQuery(query, null);
+        //Flyttar pekaren till första raden.
+        c.moveToFirst();
+        String buffer = "";
+        String buffer2 = "";
+
+        while (!c.isAfterLast()){
+            if (c.getString(c.getColumnIndex("exerciseName")) != null) {
+
+                buffer = c.getString(c.getColumnIndex("date")) + " ";
+                //Kollar att buffer inte är lika med buffer 2. Detta för att  bara läsa ut ett unikt datumvärde.
+                if(!buffer2.equals(buffer)){
+                    dbDateString += c.getString(c.getColumnIndex("date")) + " ";
+                    buffer2 = c.getString(c.getColumnIndex("date")) + " ";
+                }
+
+
+                //dbDateString += "\n";
+            }
+            c.moveToNext();
+        }
+        db.close();
+        c.close();
+        return dbDateString;
+    }
 }

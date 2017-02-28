@@ -6,6 +6,7 @@ class SQL {
     private static String _exercise;
     private static String _weight;
     private static String _reps;
+    private static String _dateTime;
 
     public void set_id(int _id) {
         this._id = _id;
@@ -39,5 +40,11 @@ class SQL {
 
     static String getReps() {
         return _reps;
+    }
+    static void set_dateTime(String dateTime){
+        _dateTime = dateTime;
+    }
+    static String getdateTime() {
+        return _dateTime;
     }
 }
