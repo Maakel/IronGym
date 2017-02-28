@@ -1,5 +1,6 @@
 package com.example.hokku.irongym;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +12,12 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+
 public class gymprogram_a extends AppCompatActivity {
 
     DBHandler dbHandler;
@@ -19,6 +26,8 @@ public class gymprogram_a extends AppCompatActivity {
     int iNoOfRows = 0;
     //Antalet celler (vikt+reps) som är definerade i activity_gymprogram_a.xml
     int iNoOfCells; //= 6;
+    String sDateTime;
+    public static ArrayList datetimelist;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -34,35 +43,7 @@ public class gymprogram_a extends AppCompatActivity {
         //TODO: Sätt dessa via inställningar i appen.
 
 
-        /*
-        final EditText etSquatsWeight1 = (EditText) findViewById(R.id.squatsWeight1);
-        //final EditText etSquatsReps = (EditText) findViewById(R.id.squatsReps);
-        etSquatsWeight1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (!hasFocus) {
-                    sSquatWeight = etSquatsWeight1.getText().toString();
-                    if (sSquatWeight.length() > 0) {
-                        Save.squatsArrayWeight[0] = sSquatWeight;
-                    }
-                }
-            }
-        });
 
-        final EditText etcalfRaiseWeight1 = (EditText) findViewById(R.id.calfraiseWeight1) ;
-        etcalfRaiseWeight1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (!hasFocus) {
-                    sCalfRaiseWeight1 = etcalfRaiseWeight1.getText().toString();
-                    if (sCalfRaiseWeight1.length() > 0) {
-                        Save.calfraiseArrayWeight [0] = sCalfRaiseWeight1;
-                    }
-                }
-            }
-        });
-        */
     }
 
 
@@ -76,6 +57,14 @@ public class gymprogram_a extends AppCompatActivity {
 //--------------------------------------------------------------------------------------------------
 //Körs när man trycker på knappen SPARA
     public void saveExercise(View view) {
+
+        //Skapar en tidsstämpel när man trycker på spara knappen.
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String sDateTime = sdf.format(cal.getTime());
+        SQL.set_dateTime(sDateTime + ",");
+
+
         //Skannar igenom hela tabellen
         for (int row = 1; row <= iNoOfRows; row++) {
             //Körs för varje ny rad
@@ -114,92 +103,27 @@ public class gymprogram_a extends AppCompatActivity {
 
                 }
 
-
-
-                /*
-                if (sTabellArr[row][cell] != null) {
-                    String id = row + "" + cell;
-                    EditText edText = (EditText) findViewById(Integer.parseInt(id));
-                    if (!edText.getText().toString().equals("")) {
-                        printToTextView(edText.getText().toString());
-                    }
-                    //printToTextView(id +"");
-                    //sTabellArr[row][cell] = row + "." + cell;
-                    //printToTextView(sTabellArr[row][cell]);
-
-                }
-                */
             }
             SQL.set_weight(sWeightMemory);
             SQL.set_reps(sRepsMemory);
+
             dbHandler.saveExerciseRow();
         }
 
         printDatabase();
 
 
-/*
-        for (int row = 4; row <= iNoOfRows; row++) {
-            for (int cell = 0; cell <= 10; cell++) {
-                String id = row + "" + cell;
 
 
-                //Kollar om data skall sparas från "Text" eller "Hint"
-                try {
-                    EditText edText = (EditText) findViewById(Integer.parseInt(id));
-                    if (edText.getText().toString() != null && !edText.getText().toString().equals("")) {
-                        sTabellArr[row][cell] = edText.getText().toString();
-                    } else if (edText.getText().toString() != null && edText.getText().toString().equals("")) {
-                        sTabellArr[row][cell] = edText.getHint().toString();
-                    }
-                } catch (Exception e) {
-
-                }
-
-                /*
-                if (sTabellArr[row][cell] != null) {
-                    String id = row + "" + cell;
-                    EditText edText = (EditText) findViewById(Integer.parseInt(id));
-                    if (!edText.getText().toString().equals("")) {
-                        printToTextView(edText.getText().toString());
-                    }
-                    //printToTextView(id +"");
-                    //sTabellArr[row][cell] = row + "." + cell;
-                    //printToTextView(sTabellArr[row][cell]);
-                    //*
-                }
-            }
-        }
-
-
-        Calendar cal = Calendar.getInstance();
-        /*year = Integer.toString(cal.get(Calendar.YEAR));
-        month = (Integer.toString(cal.get(Calendar.MONTH) + 1));
-        if (cal.get(Calendar.MONTH) < 10){ month = 0 + month; }
-        day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
-        if (cal.get(Calendar.DAY_OF_MONTH) < 10){ day = 0 + day; }
-        hour = Integer.toString(cal.get(Calendar.HOUR));
-        minute = Integer.toString(cal.get(Calendar.MINUTE));
-
-        SimpleDateFormat sdf = new  SimpleDateFormat ("yyyy/MM/dd HH:mm:ss");
-        sDateTime = sdf.format(cal.getTime());
-
-        SharedPreferences exercise_a = getSharedPreferences("exerciseA", Context.MODE_PRIVATE);
-        iNoOfSaves++;
-        Save.saveValue(exercise_a, "iNoOfSaves", Integer.toString(iNoOfSaves));
-        Save.saveExercise(exercise_a);
-
-        //sDateTime = year + month + day;
-        //sDateTime = year + month + day + "\n" + hour +":"+ minute;
-
-        Toast.makeText(this, R.string.saved, Toast.LENGTH_LONG).show();
-        */
     }
 
 //--------------------------------------------------------------------------------------------------
 //Körs när man trycker på knappen VISA
     public void showOldValue(View view) {
+        Intent intent = new Intent(this, History.class);
 
+        printDateDatabase();
+        startActivity(intent);
     }
 
 //--------------------------------------------------------------------------------------------------
@@ -329,7 +253,13 @@ public class gymprogram_a extends AppCompatActivity {
         String dbString = dbHandler.dbToString();
         printToTextView(dbString);
     }
+    //Hämtar Datumet från databasen
+    public void printDateDatabase() {
+        String dbDateString = dbHandler.dbDateToString();
 
+        datetimelist = new ArrayList<String>(Arrays.asList(dbDateString.split("\\s*,\\s*")));
+
+    }
     //Visar en String i TextView mellan knapparna "Spara" och "Visa"
     void printToTextView(String output) {
         TextView tv = (TextView) findViewById(R.id.textView);

@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".gymprogram_a" />
         <activity android:name=".gymprogram_b" />
+        <activity android:name=".History" />
     </application>
 
 </manifest>

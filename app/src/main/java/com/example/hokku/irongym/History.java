@@ -8,6 +8,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView;
 
+import java.util.List;
 
 
 public class History extends AppCompatActivity {
@@ -20,9 +21,11 @@ public class History extends AppCompatActivity {
 
 
 
+
+
         String[] mylist = {"träning1", "träning2", "träning3"};
 
-        ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mylist);
+        ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,gymprogram_a.datetimelist);
         ListView historyListVeiw = (ListView) findViewById(R.id.historyListView);
         historyListVeiw.setAdapter(historyAdapter);
 
