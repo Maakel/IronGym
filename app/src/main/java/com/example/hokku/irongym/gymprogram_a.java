@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
@@ -35,6 +36,8 @@ public class gymprogram_a extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gymprogram_a);
+        //Döljer keyboard vid start.
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         dbHandler = new DBHandler(this, null, null, 1);
 
@@ -57,10 +60,9 @@ public class gymprogram_a extends AppCompatActivity {
 
     }
 
-
 //--------------------------------------------------------------------------------------------------
 //Körs när man trycker på knappen SPARA
-    public void saveExercise(View view) {
+    public void saveExercise(View view)  {
 
         //Skapar en tidsstämpel när man trycker på spara knappen.
         Calendar cal = Calendar.getInstance();
@@ -71,6 +73,7 @@ public class gymprogram_a extends AppCompatActivity {
         //Skannar igenom hela tabellen
         for (int row = 1; row <= iNoOfRows; row++) {
             //Körs för varje ny rad
+            String sExerciseMemory = "";
             String sWeightMemory = "";
             String sRepsMemory = "";
 
@@ -81,25 +84,28 @@ public class gymprogram_a extends AppCompatActivity {
                 //Kollar om data skall sparas från "Text" eller "Hint"
                 try {
                     EditText edText = (EditText) findViewById(Integer.parseInt(id));
-                    if (edText.getText().toString() != null && !edText.getText().toString().equals("")) {
-                        //Om edittext är ifylld av användaren körs getText.
 
-                        if (cell == 0) {
-                            SQL.setExercise(edText.getText().toString());
-                        } else if (cell % 2 != 0) { //Läser celler med ojämna nummer.
-                            sWeightMemory += edText.getText().toString() + ",";
-                        }else if (cell % 2 == 0 && cell % 10 != 0) { //Läser celler med jämna nummer men som inte har sista siffran 0.
-                            sRepsMemory += edText.getText().toString() + ",";
-                        }
+                    if (!edText.getText().toString().equals("") || !edText.getHint().toString().equals("")) {
+                        if (edText.getText().toString() != null && !edText.getText().toString().equals("")) {
+                            //Om edittext är ifylld av användaren körs getText.
 
-                    } else if (edText.getText().toString() != null && edText.getText().toString().equals("")) {
-                        //Om edittext inte är ifylld körs getHint.
-                        if (cell == 0) {
-                            SQL.setExercise(edText.getHint().toString());
-                        } else if (cell % 2 != 0) { //Läser celler med ojämna nummer.
-                            sWeightMemory += edText.getHint().toString() + ",";
-                        }else if (cell % 2 == 0 && cell % 10 != 0) { //Läser celler med jämna nummer men som inte har sista siffran 0.
-                            sRepsMemory += edText.getHint().toString() + ",";
+                            if (cell == 0) {
+                                sExerciseMemory = edText.getText().toString();
+                            } else if (cell % 2 != 0) { //Läser celler med ojämna nummer.
+                                sWeightMemory += edText.getText().toString() + ",";
+                            }else if (cell % 2 == 0 && cell % 10 != 0) { //Läser celler med jämna nummer men som inte har sista siffran 0.
+                                sRepsMemory += edText.getText().toString() + ",";
+                            }
+
+                        } else if (edText.getText().toString() != null && edText.getText().toString().equals("")) {
+                            //Om edittext inte är ifylld körs getHint.
+                            if (cell == 0) {
+                                SQL.setExercise(edText.getHint().toString());
+                            } else if (cell % 2 != 0) { //Läser celler med ojämna nummer.
+                                sWeightMemory += edText.getHint().toString() + ",";
+                            }else if (cell % 2 == 0 && cell % 10 != 0) { //Läser celler med jämna nummer men som inte har sista siffran 0.
+                                sRepsMemory += edText.getHint().toString() + ",";
+                            }
                         }
                     }
                 } catch (Exception e) {
@@ -122,13 +128,17 @@ public class gymprogram_a extends AppCompatActivity {
                 }
                 */
             }
-            SQL.setWeight(sWeightMemory);
-            SQL.setReps(sRepsMemory);
-            dbHandler.saveExerciseRow();
+
+            if (!sWeightMemory.equals("") || !sRepsMemory.equals("") || !sExerciseMemory.equals("")) {
+                SQL.setExercise(sExerciseMemory);
+                SQL.setWeight(sWeightMemory);
+                SQL.setReps(sRepsMemory);
+                dbHandler.saveExerciseRow();
+            }
         }
 
         Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
-        printDatabase();
+        //printDatabase();
     }
 
 //--------------------------------------------------------------------------------------------------
@@ -198,7 +208,6 @@ public class gymprogram_a extends AppCompatActivity {
         if (iNoOfCells > 0) {
 //          int inputLength = 1;
             iNoOfRows++;
-            String sOut = "Antal rader: " + iNoOfRows;
 
             //Sätter tabelldata
             TableLayout table = (TableLayout) findViewById(R.id.table1);
@@ -269,7 +278,6 @@ public class gymprogram_a extends AppCompatActivity {
 
             //Infogar ny rad
             table.addView(row);
-            printToTextView(sOut);
             scrollDown();
         }
     }
@@ -318,7 +326,7 @@ public class gymprogram_a extends AppCompatActivity {
     }
 
 //--------------------------------------------------------------------------------------------------
-    //Scrollar ned till botten av sidan.
+//Scrollar ned till botten av sidan.
     void scrollDown() {
         final ScrollView scroll = (ScrollView) findViewById(R.id.activity_gymprogram_a);
         scroll.postDelayed(new Runnable() {
@@ -335,13 +343,13 @@ public class gymprogram_a extends AppCompatActivity {
     }
 
 //--------------------------------------------------------------------------------------------------
-    //Hämtar Datumet från databasen
+//Hämtar spardatumet från databasen
     public void printDateDatabase() {
 
     }
 
 //--------------------------------------------------------------------------------------------------
-    //Visar en String i TextView mellan knapparna "Spara" och "Visa"
+    //Visar en String i TextView placerad under knappraden.
     void printToTextView(String output) {
         TextView tv = (TextView) findViewById(R.id.textView);
         tv.setText(output);
@@ -356,4 +364,3 @@ public class gymprogram_a extends AppCompatActivity {
 }
 
 //TODO: Spara när man vrider skärmen.
-//TODO: Gå tillbaka till Main från History

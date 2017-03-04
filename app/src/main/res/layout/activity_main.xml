@@ -13,18 +13,10 @@
         android:text="@string/button_NewExerice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/mainCenter"
         android:layout_centerHorizontal="true"
         android:id="@+id/passA"
+        android:layout_above="@+id/passB"
         android:onClick="pass_a" />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        android:id="@id/mainCenter"/>
 
     <Button
         android:text="@string/pass_b"
@@ -32,10 +24,22 @@
         android:paddingRight="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/mainCenter"
+
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:id="@+id/passB"
         android:onClick="pass_b"/>
+
+    <Button
+        android:text="@string/history"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passB"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/buttonHistory"
+        android:onClick="history"/>
 
     <!--
     <TextView

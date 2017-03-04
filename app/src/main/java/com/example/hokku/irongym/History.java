@@ -1,6 +1,7 @@
 package com.example.hokku.irongym;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,14 +17,14 @@ import java.util.List;
 
 public class History extends AppCompatActivity {
 
-    static String sDate = "";
+    static ListAdapter historyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        final ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,gymprogram_a.datetimelist);
+        historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,gymprogram_a.datetimelist);
         ListView historyListView = (ListView) findViewById(R.id.historyListView);
         historyListView.setAdapter(historyAdapter);
 
@@ -41,8 +42,8 @@ public class History extends AppCompatActivity {
                     }
                 }
         );
-
     }
 
-
 }
+
+//TODO: Fixa så att sidan uppdateras när man har sparat en ny övning baserad på en gammal och går tillbaka.
