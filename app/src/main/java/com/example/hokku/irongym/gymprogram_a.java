@@ -9,7 +9,6 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ScrollView;
-import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -32,7 +31,6 @@ public class gymprogram_a extends AppCompatActivity {
     public static ArrayList datetimelist;
 
 //--------------------------------------------------------------------------------------------------
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,43 +38,19 @@ public class gymprogram_a extends AppCompatActivity {
 
         dbHandler = new DBHandler(this, null, null, 1);
 
-    //Skapar nya rader, celler.
-        addNewRows(5,6);
-        //TODO: Sätt dessa via inställningar i appen.
 
+        if (SQL.getShowHistory()==Boolean.FALSE) {
+            //Skapar nya rader, celler.
+            addNewRows(5,6);
+            //TODO: Sätt dessa via inställningar i appen.
+        } else if (SQL.getShowHistory()==Boolean.TRUE){
+            //Visar historik.
+            showHistory();
+        }
 
-        /*
-        final EditText etSquatsWeight1 = (EditText) findViewById(R.id.squatsWeight1);
-        //final EditText etSquatsReps = (EditText) findViewById(R.id.squatsReps);
-        etSquatsWeight1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (!hasFocus) {
-                    sSquatWeight = etSquatsWeight1.getText().toString();
-                    if (sSquatWeight.length() > 0) {
-                        Save.squatsArrayWeight[0] = sSquatWeight;
-                    }
-                }
-            }
-        });
-
-        final EditText etcalfRaiseWeight1 = (EditText) findViewById(R.id.calfraiseWeight1) ;
-        etcalfRaiseWeight1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if (!hasFocus) {
-                    sCalfRaiseWeight1 = etcalfRaiseWeight1.getText().toString();
-                    if (sCalfRaiseWeight1.length() > 0) {
-                        Save.calfraiseArrayWeight [0] = sCalfRaiseWeight1;
-                    }
-                }
-            }
-        });
-        */
     }
 
-
+//--------------------------------------------------------------------------------------------------
     @Override
     protected void onResume() {
         super.onResume();
@@ -92,7 +66,7 @@ public class gymprogram_a extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String sDateTime = sdf.format(cal.getTime());
-        SQL.set_dateTime(sDateTime + ",");
+        SQL.setDateTime(sDateTime + ",");
 
         //Skannar igenom hela tabellen
         for (int row = 1; row <= iNoOfRows; row++) {
@@ -111,7 +85,7 @@ public class gymprogram_a extends AppCompatActivity {
                         //Om edittext är ifylld av användaren körs getText.
 
                         if (cell == 0) {
-                            SQL.set_exercise(edText.getText().toString());
+                            SQL.setExercise(edText.getText().toString());
                         } else if (cell % 2 != 0) { //Läser celler med ojämna nummer.
                             sWeightMemory += edText.getText().toString() + ",";
                         }else if (cell % 2 == 0 && cell % 10 != 0) { //Läser celler med jämna nummer men som inte har sista siffran 0.
@@ -121,7 +95,7 @@ public class gymprogram_a extends AppCompatActivity {
                     } else if (edText.getText().toString() != null && edText.getText().toString().equals("")) {
                         //Om edittext inte är ifylld körs getHint.
                         if (cell == 0) {
-                            SQL.set_exercise(edText.getHint().toString());
+                            SQL.setExercise(edText.getHint().toString());
                         } else if (cell % 2 != 0) { //Läser celler med ojämna nummer.
                             sWeightMemory += edText.getHint().toString() + ",";
                         }else if (cell % 2 == 0 && cell % 10 != 0) { //Läser celler med jämna nummer men som inte har sista siffran 0.
@@ -148,8 +122,8 @@ public class gymprogram_a extends AppCompatActivity {
                 }
                 */
             }
-            SQL.set_weight(sWeightMemory);
-            SQL.set_reps(sRepsMemory);
+            SQL.setWeight(sWeightMemory);
+            SQL.setReps(sRepsMemory);
             dbHandler.saveExerciseRow();
         }
 
@@ -160,13 +134,16 @@ public class gymprogram_a extends AppCompatActivity {
 //--------------------------------------------------------------------------------------------------
 //Körs när man trycker på knappen VISA
     public void showOldValue(View view) {
-        /*
         Intent intent = new Intent(this, History.class);
 
-        printDateDatabase();
+
+        String dbDateString = dbHandler.dbDateToString();
+        datetimelist = new ArrayList<String>(Arrays.asList(dbDateString.split("\\s*,\\s*")));
         startActivity(intent);
-        */
-        showHistory();
+        //printDateDatabase();
+
+
+        //showHistory();
     }
 
 //--------------------------------------------------------------------------------------------------
@@ -249,7 +226,10 @@ public class gymprogram_a extends AppCompatActivity {
             for (cell = 1; cell <= iNoOfCells; cell++) {
                 sCellId = iNoOfRows + "" + cell;
                 EditText newWeight = new EditText(this);
-                newWeight.setHint("20");
+                if (iNoOfRows<=2) {
+                    newWeight.setHint("20");
+                } else {
+                    newWeight.setHint("");}
                 //newWeight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
                 newWeight.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 newWeight.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
@@ -260,7 +240,10 @@ public class gymprogram_a extends AppCompatActivity {
 
                 sCellId = iNoOfRows + "" + ++cell;
                 EditText newReps = new EditText(this);
-                newReps.setHint("10");
+                if (iNoOfRows<=2) {
+                    newReps.setHint("10");
+                } else {
+                    newReps.setHint("");}
                 //newReps.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
                 newReps.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 newReps.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
@@ -293,7 +276,7 @@ public class gymprogram_a extends AppCompatActivity {
 
 //--------------------------------------------------------------------------------------------------
 //Hämtar värden från databasen och sätter dom i tabellen.
-    public void showHistory() {
+    void showHistory() {
 
         String sDbExerciseColName = DBHandler.COLUMN_EXERCISENAME;
         String sDbWeightColName = DBHandler.COLUMN_WEIGHT;
@@ -335,7 +318,6 @@ public class gymprogram_a extends AppCompatActivity {
     }
 
 //--------------------------------------------------------------------------------------------------
-
     //Scrollar ned till botten av sidan.
     void scrollDown() {
         final ScrollView scroll = (ScrollView) findViewById(R.id.activity_gymprogram_a);
@@ -355,8 +337,7 @@ public class gymprogram_a extends AppCompatActivity {
 //--------------------------------------------------------------------------------------------------
     //Hämtar Datumet från databasen
     public void printDateDatabase() {
-        String dbDateString = dbHandler.dbDateToString();
-        datetimelist = new ArrayList<String>(Arrays.asList(dbDateString.split("\\s*,\\s*")));
+
     }
 
 //--------------------------------------------------------------------------------------------------
@@ -375,3 +356,4 @@ public class gymprogram_a extends AppCompatActivity {
 }
 
 //TODO: Spara när man vrider skärmen.
+//TODO: Gå tillbaka till Main från History

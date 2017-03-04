@@ -7,26 +7,32 @@ class SQL {
     private static String _weight;
     private static String _reps;
     private static String _dateTime;
+    private static Boolean _showHistory;
 
-    public void set_id(int _id) {
+
+    public void setId(int _id) {
         this._id = _id;
     }
 
-    static void set_exercise(String exercise) {
+    static void setExercise(String exercise) {
         _exercise = exercise;
     }
 
-    static void set_weight(String weight) {
+    static void setWeight(String weight) {
         _weight = weight;
     }
 
-    static void set_reps(String reps) {
-        _reps = reps;
+    static void setReps(String reps) { _reps = reps; }
+
+    static void setDateTime(String dateTime){
+        _dateTime = dateTime;
     }
 
+    public static void setShowHistory(Boolean showHistory) { _showHistory = showHistory; }
 
 
-    public int get_id() {
+
+    public int getId() {
         return _id;
     }
 
@@ -41,10 +47,10 @@ class SQL {
     static String getReps() {
         return _reps;
     }
-    static void set_dateTime(String dateTime){
-        _dateTime = dateTime;
-    }
-    static String getdateTime() {
+
+    static String getDateTime() {
         return _dateTime;
     }
+
+    public static Boolean getShowHistory() { return _showHistory; }
 }

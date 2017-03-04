@@ -51,32 +51,32 @@ class DBHandler extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    //Tar bort hela tabellen
+//Tar bort hela tabellen
     void dropTable(){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
-    //Skapar en ny rad i DB
+//Skapar en ny rad i DB
     void saveExerciseRow() {
         ContentValues values = new ContentValues();
         values.put(COLUMN_EXERCISENAME, SQL.getExercise());
         values.put(COLUMN_REPS, SQL.getReps());
         values.put(COLUMN_WEIGHT, SQL.getWeight());
-        values.put(COLUMN_DATETIME, SQL.getdateTime());
+        values.put(COLUMN_DATETIME, SQL.getDateTime());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
 
-    //Tar bort data i tabellen
+//Tar bort data i tabellen
     void deleteRecord(String rowToDelete){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_EXERCISENAME + "=\"" + rowToDelete);
     }
 
-    //Hämtar data från tabellen
+//Hämtar data från tabellen
     String dbToString(){
         String dbString ="";
         SQLiteDatabase db = getWritableDatabase();
@@ -103,20 +103,17 @@ class DBHandler extends SQLiteOpenHelper{
         return dbString;
     }
 
+//Hämtar en specefik rad från databasen.
     String getDbRow(int iPos,String sColumn){
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE 1";
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + "date=" + "\"" +SQL.getDateTime()+",\"";
         Cursor c = db.rawQuery(query, null);
         c.moveToPosition(iPos);
 
         if (!c.isAfterLast()){
             if (c.getString(c.getColumnIndex("exerciseName")) != null) {
-                //dbString += c.getString(c.getColumnIndex("_id")) + " ";
                 dbString = c.getString(c.getColumnIndex(sColumn));
-                //dbString += " " + c.getString(c.getColumnIndex("weight"));
-                //dbString += " " + c.getString(c.getColumnIndex("reps"));
-                //dbString += " " + c.getString(c.getColumnIndex("date"));
             }
         }
         c.close();
@@ -124,7 +121,7 @@ class DBHandler extends SQLiteOpenHelper{
         return dbString;
     }
 
-    //Hämtar sparade datum från databasen
+//Hämtar sparade datum från databasen
     String dbDateToString(){
         String dbDateString ="";
         SQLiteDatabase db = getWritableDatabase();
@@ -134,7 +131,7 @@ class DBHandler extends SQLiteOpenHelper{
         Cursor c = db.rawQuery(query, null);
         //Flyttar pekaren till första raden.
         c.moveToFirst();
-        String buffer = "";
+        String buffer;
         String buffer2 = "";
 
         while (!c.isAfterLast()){
@@ -154,8 +151,9 @@ class DBHandler extends SQLiteOpenHelper{
         return dbDateString;
     }
 
+//Räknar antalet rader i databassvaret
     public int countRows() {
-        String countQuery = "SELECT  * FROM " + TABLE_NAME;
+        String countQuery = "SELECT * FROM " + TABLE_NAME + " WHERE " + "date=" + "\"" +SQL.getDateTime()+",\"";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(countQuery, null);
         int iCounter = c.getCount();

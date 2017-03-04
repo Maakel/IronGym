@@ -14,10 +14,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void pass_a(View view){
         Intent intent = new Intent(this, gymprogram_a.class);
+        SQL.setShowHistory(Boolean.FALSE);
         startActivity(intent);
     }
     public void pass_b(View view){
         Intent intent = new Intent(this, gymprogram_b.class);
+        SQL.setShowHistory(Boolean.FALSE);
         startActivity(intent);
     }
 }
