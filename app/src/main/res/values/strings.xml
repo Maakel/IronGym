@@ -21,6 +21,8 @@
     <string name="exerciseHeader">Övning:</string>
     <string name="history">Historik</string>
     <string name="erase_data">Radera data</string>
+    <string name="ProgramName">Välj namn på träningsprogram</string>
+    <string name="next">Nästa</string>
 
     <string-array name="exerciseSuggestions">
         <item>Knäböj</item>

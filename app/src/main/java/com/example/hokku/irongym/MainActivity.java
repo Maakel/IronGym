@@ -18,9 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void pass_a(View view) {
-        Intent intent = new Intent(this, gymprogram_a.class);
-        SQL.setShowHistory(Boolean.FALSE);
+    public void createNew(View view) {
+        Intent intent = new Intent(this, ProgramName.class);
+
         startActivity(intent);
     }
 

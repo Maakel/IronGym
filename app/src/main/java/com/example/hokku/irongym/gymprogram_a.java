@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -28,7 +29,7 @@ public class gymprogram_a extends AppCompatActivity {
     //Antalet celler (vikt+reps) som är definerade i activity_gymprogram_a.xml
     int iNoOfCells; //= 6;
     int iMaxNoOfCells = 10;
-    String sDateTime;
+
     public static ArrayList datetimelist;
 
 //--------------------------------------------------------------------------------------------------
@@ -150,18 +151,13 @@ public class gymprogram_a extends AppCompatActivity {
         String dbDateString = dbHandler.dbDateToString();
         datetimelist = new ArrayList<String>(Arrays.asList(dbDateString.split("\\s*,\\s*")));
         startActivity(intent);
-        //printDateDatabase();
+
 
 
         //showHistory();
     }
 
-//--------------------------------------------------------------------------------------------------
-//Körs när man trycker på knappen "Del DB"
-    /*public void deleteDB(View view) {
-        dbHandler.dropTable();
-        printToTextView("Databasen är tömd!");
-    }*/
+
 
 //--------------------------------------------------------------------------------------------------
 //Körs när man trycker på +. Lägger till en ny rad med X antal celler i tabellen.
@@ -209,6 +205,7 @@ public class gymprogram_a extends AppCompatActivity {
 //          int inputLength = 1;
             iNoOfRows++;
 
+
             //Sätter tabelldata
             TableLayout table = (TableLayout) findViewById(R.id.table1);
             TableRow row = new TableRow(this);
@@ -216,6 +213,9 @@ public class gymprogram_a extends AppCompatActivity {
 
             int cell = 0;
             String sCellId = iNoOfRows + "" + cell;
+
+
+
 
             //Första cellen - Träningsmomentets namn
             EditText etHeaderExercise = new EditText(this);

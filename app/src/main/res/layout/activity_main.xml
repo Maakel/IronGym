@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/passA"
         android:layout_above="@+id/passB"
-        android:onClick="pass_a" />
+        android:onClick="createNew" />
 
     <Button
         android:text="@string/pass_b"
