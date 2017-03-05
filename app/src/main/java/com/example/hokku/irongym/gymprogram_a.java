@@ -28,6 +28,7 @@ public class gymprogram_a extends AppCompatActivity {
     int iNoOfCells; //= 6;
     String sDateTime;
     public static ArrayList datetimelist;
+    public static String toToast;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -265,6 +266,20 @@ public class gymprogram_a extends AppCompatActivity {
         TextView tv = (TextView) findViewById(R.id.textView);
         tv.setText(output);
     }
+   /* //Detta körs när man väljer datum i  history vyn. Detta fungerar ej för metoden körs int från listwien. Man kan bara köra en metod som är static i från list wiew
+    public void getHistory(){
+        String dbHistory =   dbHandler.dbHistory();
+        printToToast(dbHistory);
+    }
+
+
+     static void printToToast(String x){
+
+        toToast = x;
+
+
+
+    }*/
 
     @Override
     protected void onPause() {

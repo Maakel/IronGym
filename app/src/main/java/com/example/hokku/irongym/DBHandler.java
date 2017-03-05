@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-class DBHandler extends SQLiteOpenHelper{
+class DBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "irongym.db";
@@ -29,7 +29,7 @@ class DBHandler extends SQLiteOpenHelper{
                 COLUMN_EXERCISENAME + " VARCHAR(30), " +
                 COLUMN_WEIGHT + " TEXT, " +
                 COLUMN_REPS + " TEXT, " +
-                COLUMN_DATETIME +  " TEXT "/*" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP "*/ +
+                COLUMN_DATETIME + " TEXT "/*" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP "*/ +
                 ");";
         db.execSQL(query);
 
@@ -45,7 +45,7 @@ class DBHandler extends SQLiteOpenHelper{
     }
 
     //Tar bort hela tabellen
-    void dropTable(){
+    void dropTable() {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCTS);
         onCreate(db);
@@ -64,14 +64,14 @@ class DBHandler extends SQLiteOpenHelper{
     }
 
     //Tar bort data i tabellen
-    void deleteRecord(String rowToDelete){
+    void deleteRecord(String rowToDelete) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_EXERCISENAME + "=\"" + rowToDelete);
     }
 
     //Hämtar data från tabellen
-    String dbToString(){
-        String dbString ="";
+    String dbToString() {
+        String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_PRODUCTS + " WHERE 1";
 
@@ -80,7 +80,7 @@ class DBHandler extends SQLiteOpenHelper{
         //Flyttar pekaren till första raden.
         c.moveToFirst();
 
-        while (!c.isAfterLast()){
+        while (!c.isAfterLast()) {
             if (c.getString(c.getColumnIndex("exerciseName")) != null) {
                 dbString += c.getString(c.getColumnIndex("_id")) + " ";
                 dbString += c.getString(c.getColumnIndex("exerciseName"));
@@ -95,8 +95,9 @@ class DBHandler extends SQLiteOpenHelper{
         c.close();
         return dbString;
     }
-    String dbDateToString(){
-        String dbDateString ="";
+
+    String dbDateToString() {
+        String dbDateString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_PRODUCTS + " WHERE 1";
 
@@ -104,15 +105,15 @@ class DBHandler extends SQLiteOpenHelper{
         Cursor c = db.rawQuery(query, null);
         //Flyttar pekaren till första raden.
         c.moveToFirst();
-        String buffer = "";
+        String buffer;
         String buffer2 = "";
 
-        while (!c.isAfterLast()){
+        while (!c.isAfterLast()) {
             if (c.getString(c.getColumnIndex("exerciseName")) != null) {
 
                 buffer = c.getString(c.getColumnIndex("date")) + " ";
                 //Kollar att buffer inte är lika med buffer 2. Detta för att  bara läsa ut ett unikt datumvärde.
-                if(!buffer2.equals(buffer)){
+                if (!buffer2.equals(buffer)) {
                     dbDateString += c.getString(c.getColumnIndex("date")) + " ";
                     buffer2 = c.getString(c.getColumnIndex("date")) + " ";
                 }
@@ -125,5 +126,34 @@ class DBHandler extends SQLiteOpenHelper{
         db.close();
         c.close();
         return dbDateString;
+    }
+
+    //Hätar data till History vyn.
+    String dbHistory(String a) {
+        String dbHistory ="";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_PRODUCTS + " WHERE date= '" +a + ",'";
+
+
+        //Databaspekar. Går igenom rad för rad.
+        Cursor c = db.rawQuery(query, null);
+        //Flyttar pekaren till första raden.
+        c.moveToFirst();
+
+        while (!c.isAfterLast()) {
+            if (c.getString(c.getColumnIndex("exerciseName")) != null) {
+
+                dbHistory += c.getString(c.getColumnIndex("exerciseName"));
+                dbHistory += " " + c.getString(c.getColumnIndex("weight"));
+                dbHistory += " " + c.getString(c.getColumnIndex("reps"));
+                dbHistory += " " + c.getString(c.getColumnIndex("date"));
+
+                dbHistory += "\n";
+            }
+            c.moveToNext();
+        }
+        db.close();
+        c.close();
+        return dbHistory;
     }
 }

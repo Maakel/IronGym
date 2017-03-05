@@ -7,12 +7,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.List;
 
 
 public class History extends AppCompatActivity {
 
+   DBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +23,7 @@ public class History extends AppCompatActivity {
 
 
 
-
+        dbHandler = new DBHandler(this, null, null, 1);
 
 
 
@@ -34,7 +36,13 @@ public class History extends AppCompatActivity {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            String test1 = String.valueOf(parent.getItemAtPosition(position));
 
+
+                            String test3 = dbHandler.dbHistory(test1);
+
+
+                        Toast.makeText(History.this, test3,Toast.LENGTH_LONG).show();
                     }
                 }
         );
