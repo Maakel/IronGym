@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MH-IronGym.iml" filepath="$PROJECT_DIR$/MH-IronGym.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IronGym-AddExercises.iml" filepath="$PROJECT_DIR$/IronGym-AddExercises.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

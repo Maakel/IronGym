@@ -158,10 +158,10 @@ public class gymprogram_a extends AppCompatActivity {
 
 //--------------------------------------------------------------------------------------------------
 //Körs när man trycker på knappen "Del DB"
-    public void deleteDB(View view) {
+    /*public void deleteDB(View view) {
         dbHandler.dropTable();
         printToTextView("Databasen är tömd!");
-    }
+    }*/
 
 //--------------------------------------------------------------------------------------------------
 //Körs när man trycker på +. Lägger till en ny rad med X antal celler i tabellen.

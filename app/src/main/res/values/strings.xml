@@ -15,9 +15,12 @@
     <string name="visa">Visa</string>
     <string name="spara">Spara</string>
     <string name="saved">Sparad!</string>
+    <string name="dbEmpty">Databas tömd.</string>
+    <string name="emptytext">Tryck på knappen för att tömma databasen. "\n" Obs!! all data kommer att försvinna.</string>
 
     <string name="exerciseHeader">Övning:</string>
     <string name="history">Historik</string>
+    <string name="erase_data">Radera data</string>
 
     <string-array name="exerciseSuggestions">
         <item>Knäböj</item>
